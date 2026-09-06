@@ -1,0 +1,106 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+@source '../**/*.vue';
+
+/*
+ | Design tokens.
+ |
+ | The previous site had no theme layer at all: #e48801 appeared as a literal
+ | fifty-two times and #0810a3 seventeen, behind class names ".yellow" and
+ | ".blue" that did not describe their own colours. The palette is the same, but
+ | it now lives in one place.
+ */
+@theme {
+    --color-brand-50: #fff8ec;
+    --color-brand-100: #ffedcc;
+    --color-brand-200: #ffd894;
+    --color-brand-300: #ffbc5c;
+    --color-brand-400: #fb9e2f;
+    --color-brand-500: #e48801;
+    --color-brand-600: #c26f00;
+    --color-brand-700: #9a5502;
+    --color-brand-800: #7c4408;
+    --color-brand-900: #66390b;
+
+    --color-ink-50: #eef0ff;
+    --color-ink-100: #e0e3ff;
+    --color-ink-200: #c7cbff;
+    --color-ink-300: #a5a8ff;
+    --color-ink-400: #8781fb;
+    --color-ink-500: #6f60f2;
+    --color-ink-600: #212fab;
+    --color-ink-700: #0810a3;
+    --color-ink-800: #0a0f7f;
+    --color-ink-900: #0d1268;
+
+    --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    --font-heading: 'Noto Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Bebas Neue', 'Noto Sans', ui-sans-serif, sans-serif;
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply bg-white font-sans text-slate-700 antialiased;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-heading text-ink-700;
+    }
+
+    /* Content stored as HTML by the CMS. */
+    .prose-cms :where(p) { @apply mb-4 leading-relaxed; }
+    .prose-cms :where(ul) { @apply mb-4 list-disc pl-6; }
+    .prose-cms :where(ol) { @apply mb-4 list-decimal pl-6; }
+    .prose-cms :where(a) { @apply text-ink-700 underline; }
+    .prose-cms :where(img) { @apply my-4 max-w-full rounded; }
+    .prose-cms :where(iframe) { @apply my-4 aspect-video w-full rounded; }
+}
+
+@layer components {
+    /* Shared button base, listed as one selector so no rule has to @apply another. */
+    .btn,
+    .btn-primary,
+    .btn-secondary,
+    .btn-ghost {
+        @apply inline-flex items-center justify-center gap-2 rounded px-5 py-2.5 font-heading text-sm
+               font-semibold transition-colors focus:outline-none focus-visible:ring-2
+               focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+    }
+
+    .btn-primary {
+        @apply bg-brand-500 text-white hover:bg-ink-700 focus-visible:ring-brand-500;
+    }
+
+    .btn-secondary {
+        @apply border border-ink-700 bg-white text-ink-700 hover:bg-ink-700 hover:text-white;
+    }
+
+    .btn-ghost {
+        @apply text-ink-700 hover:bg-slate-100;
+    }
+
+    .field-label {
+        @apply mb-1 block font-heading text-sm font-semibold text-ink-700;
+    }
+
+    .field-input {
+        @apply w-full rounded border border-slate-300 px-3 py-2 text-sm
+               focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500;
+    }
+
+    .field-error {
+        @apply mt-1 block text-xs font-medium text-red-600;
+    }
+
+    .card {
+        @apply rounded-lg border border-slate-200 bg-white;
+    }
+}
