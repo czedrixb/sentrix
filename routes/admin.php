@@ -4,8 +4,10 @@ use App\Http\Controllers\Api\V1\Admin\BranchController;
 use App\Http\Controllers\Api\V1\Admin\ContentController;
 use App\Http\Controllers\Api\V1\Admin\DashboardController;
 use App\Http\Controllers\Api\V1\Admin\InquiryController;
+use App\Http\Controllers\Api\V1\Admin\LowStockController;
 use App\Http\Controllers\Api\V1\Admin\OrderController;
 use App\Http\Controllers\Api\V1\Admin\ProductController;
+use App\Http\Controllers\Api\V1\Admin\RevenueSeriesController;
 use App\Http\Controllers\Api\V1\Admin\TaxonomyController;
 use App\Http\Controllers\Api\V1\Admin\UserController;
 use App\Http\Controllers\Api\V1\Admin\VoucherController;
@@ -26,9 +28,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth:sanctum'])->prefix('v1/admin')->name('api.v1.admin.')->group(function (): void {
 
-    Route::get('dashboard', DashboardController::class)
-        ->middleware('permission:dashboard.view')
-        ->name('dashboard');
+    /*
+    | Dashboard. The two panels below are separate endpoints so paging the
+    | stock list or changing the chart range does not refetch every counter.
+    */
+    Route::middleware('permission:dashboard.view')->group(function (): void {
+        Route::get('dashboard', DashboardController::class)->name('dashboard');
+        Route::get('dashboard/low-stock', LowStockController::class)->name('dashboard.low-stock');
+        Route::get('dashboard/revenue', RevenueSeriesController::class)->name('dashboard.revenue');
+    });
 
     /*
     | Orders. Branch scoping is enforced by OrderPolicy on every row.

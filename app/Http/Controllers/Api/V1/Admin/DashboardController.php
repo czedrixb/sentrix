@@ -67,37 +67,7 @@ class DashboardController extends Controller
                         $scope->where('branch_id', $branchId)->orWhereNull('branch_id');
                     }))
                     ->count(),
-                'low_stock' => $this->lowStock($branchId),
             ],
         ]);
-    }
-
-    /**
-     * Products at or below their low-stock threshold, per branch.
-     *
-     * @return list<array<string, mixed>>
-     */
-    private function lowStock(?int $branchId): array
-    {
-        return DB::table('branch_product')
-            ->join('products', 'products.id', '=', 'branch_product.product_id')
-            ->join('branches', 'branches.id', '=', 'branch_product.branch_id')
-            ->whereNull('products.deleted_at')
-            ->where('products.status', ProductStatus::Active->value)
-            ->whereColumn('branch_product.quantity', '<=', 'branch_product.low_stock_threshold')
-            ->when($branchId, fn ($query) => $query->where('branch_product.branch_id', $branchId))
-            ->orderBy('branch_product.quantity')
-            ->limit(25)
-            ->get([
-                'products.id as product_id',
-                'products.name as product_name',
-                'products.sku',
-                'branches.id as branch_id',
-                'branches.name as branch_name',
-                'branch_product.quantity',
-                'branch_product.low_stock_threshold',
-            ])
-            ->map(fn ($row): array => (array) $row)
-            ->all();
     }
 }
