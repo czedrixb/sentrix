@@ -86,6 +86,9 @@ export const auth = {
 
 export const admin = {
     dashboard: () => client.get('/admin/dashboard').then((r) => r.data.data),
+    lowStock: (params = {}) => client.get('/admin/dashboard/low-stock', { params }).then((r) => r.data),
+    revenueSeries: (range) =>
+        client.get('/admin/dashboard/revenue', { params: { range } }).then((r) => r.data.data),
 
     orders: (params = {}) => client.get('/admin/orders', { params }).then((r) => r.data),
     order: (number) => client.get(`/admin/orders/${number}`).then((r) => r.data.data),
