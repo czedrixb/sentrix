@@ -1,9 +1,9 @@
-# Kompra
+# Sentrix
 
-Kompra is the storefront and staff back office for an office-supplies retailer trading
-across eight locations in the Philippines — Davao, Cebu, Iloilo, General Santos,
-Malaybalay, Quezon City and Tagbilaran, plus a Central Warehouse that stocks goods but is
-not a pick-up point.
+Sentrix is the storefront and staff back office for a security and surveillance retailer —
+CCTV, recorders, alarms, access control and cabling — trading across eight locations in the
+Philippines: Davao, Cebu, Iloilo, General Santos, Malaybalay, Quezon City and Tagbilaran,
+plus a Central Warehouse that stocks goods but is not a pick-up point.
 
 Customers browse a branch's catalogue, build a cart, apply a voucher and place an order
 for pick-up or delivery. Staff work the other side of the same data: orders, stock,
@@ -77,7 +77,7 @@ directions, so a new branch immediately has a stock row for every product and a 
 product has one at every branch.
 
 **Carts are persisted, not session-held.** The `ResolveCart` middleware identifies a cart
-by the `kompra_cart` cookie, which keeps the API stateless and lets a guest cart follow the
+by the `sentrix_cart` cookie, which keeps the API stateless and lets a guest cart follow the
 customer onto their account when they register or sign in mid-checkout.
 
 **Checkout is one transaction.** `PlaceOrder` locks the relevant `branch_product` rows
@@ -90,14 +90,14 @@ minimum-quantity variants of each. A voucher can be scoped to specific products,
 discount can never exceed the cart value. Redemptions are recorded and usage counts are
 actually incremented.
 
-**Order numbers** are unique and sequential per day rather than random, prefixed `KMP`.
+**Order numbers** are unique and sequential per day rather than random, prefixed `SNX`.
 
 ## Getting started
 
 Requires PHP 8.3+, Composer, Node 20+ and a MySQL database.
 
 ```bash
-git clone https://github.com/czedrixb/kompra.git
+git clone https://github.com/czedrixb/sentrix.git
 ```
 
 Create the database, then run the setup script — it installs both dependency sets, copies
@@ -118,12 +118,20 @@ php artisan migrate --seed
 php artisan storage:link
 ```
 
-The demo catalogue ships without imagery. Fetch free stock photography onto the public
-disk, or pass `--offline` to generate local placeholders instead of hitting the network:
+The demo catalogue ships without imagery. Fetch photography onto the public disk, or pass
+`--offline` to generate local placeholders instead of hitting the network:
 
 ```bash
-php artisan kompra:fetch-demo-media
+php artisan sentrix:fetch-demo-media
 ```
+
+Images come from the [Openverse](https://openverse.org) API, restricted to **CC0 and the
+Public Domain Mark**. Both are free of attribution, share-alike and non-commercial terms,
+so the seeded site can be deployed without a licence audit. Provenance for every file is
+recorded in `storage/app/public/demo/credits.json` and `credits.md`.
+
+This is demo content, not a substitute for real product photography — replace it from the
+admin before launch.
 
 Then start the dev server and Vite together:
 
@@ -131,23 +139,23 @@ Then start the dev server and Vite together:
 composer dev
 ```
 
-Seeded staff sign in as `admin@kompra.test`, `sales@kompra.test`,
-`inventory@kompra.test`, `accounts@kompra.test`, `auditor@kompra.test` or
-`hr@kompra.test`, and each pick-up branch gets its own manager at
-`branch-slug@kompra.test`. All of them use `SEED_ADMIN_PASSWORD`.
+Seeded staff sign in as `admin@sentrix.test`, `sales@sentrix.test`,
+`inventory@sentrix.test`, `accounts@sentrix.test`, `auditor@sentrix.test` or
+`hr@sentrix.test`, and each pick-up branch gets its own manager at
+`branch-slug@sentrix.test`. All of them use `SEED_ADMIN_PASSWORD`.
 
 ## Configuration
 
-Beyond the usual Laravel settings, `config/kompra.php` exposes:
+Beyond the usual Laravel settings, `config/sentrix.php` exposes:
 
 | Variable | Default | Purpose |
 |---|---|---|
-| `KOMPRA_ORDER_PREFIX` | `KMP` | Prefix on generated order numbers |
-| `KOMPRA_CART_LIFETIME_DAYS` | `30` | How long a guest cart survives |
-| `KOMPRA_SCHEDULE_OPENS_AT` | `08:00` | Earliest pick-up / delivery slot |
-| `KOMPRA_SCHEDULE_CLOSES_AT` | `17:00` | Latest slot |
-| `KOMPRA_SCHEDULE_SLOT_MINUTES` | `30` | Slot granularity |
-| `KOMPRA_SCHEDULE_MAX_DAYS_AHEAD` | `60` | How far ahead a customer may book |
+| `SENTRIX_ORDER_PREFIX` | `SNX` | Prefix on generated order numbers |
+| `SENTRIX_CART_LIFETIME_DAYS` | `30` | How long a guest cart survives |
+| `SENTRIX_SCHEDULE_OPENS_AT` | `08:00` | Earliest pick-up / delivery slot |
+| `SENTRIX_SCHEDULE_CLOSES_AT` | `17:00` | Latest slot |
+| `SENTRIX_SCHEDULE_SLOT_MINUTES` | `30` | Slot granularity |
+| `SENTRIX_SCHEDULE_MAX_DAYS_AHEAD` | `60` | How far ahead a customer may book |
 
 ## Testing
 

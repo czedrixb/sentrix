@@ -27,7 +27,7 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll));
         <button
             v-if="visible"
             type="button"
-            class="fixed bottom-6 right-6 z-40 grid size-11 place-items-center rounded-full bg-brand-500 text-white shadow-lg hover:bg-ink-700"
+            class="fixed bottom-6 right-6 z-40 grid size-11 place-items-center rounded-full bg-ink-900 text-white shadow-lg transition-colors duration-300 ease-soft hover:bg-brand-600"
             aria-label="Back to top"
             @click="toTop"
         >

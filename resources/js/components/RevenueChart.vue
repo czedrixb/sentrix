@@ -75,7 +75,7 @@ const summary = computed(
             <!-- Y axis. Its labels are what let the reader read a column they
                  are not hovering. -->
             <div
-                class="relative w-12 shrink-0 text-right text-[0.65rem] tabular-nums text-slate-400"
+                class="relative w-12 shrink-0 text-right text-[0.65rem] tabular-nums text-ink-400"
                 :style="{ height: `${height}px` }"
                 aria-hidden="true"
             >
@@ -93,7 +93,7 @@ const summary = computed(
                     <div
                         v-for="tick in ticks"
                         :key="tick.fraction"
-                        class="absolute inset-x-0 border-t border-slate-100"
+                        class="absolute inset-x-0 border-t border-ink-100"
                         :style="{ top: `${(1 - tick.fraction) * 100}%` }"
                     />
                 </div>
@@ -133,29 +133,29 @@ const summary = computed(
                              goes unread. -->
                         <span
                             v-if="index === peakIndex && hovered === null"
-                            class="pointer-events-none absolute bottom-full mb-1 whitespace-nowrap text-[0.65rem] font-semibold tabular-nums text-slate-500"
+                            class="pointer-events-none absolute bottom-full mb-1 whitespace-nowrap text-[0.65rem] font-semibold tabular-nums text-ink-400"
                         >{{ compact(peak) }}</span>
 
                         <div
                             v-if="hovered === index"
-                            class="pointer-events-none absolute bottom-full z-10 mb-2 whitespace-nowrap rounded bg-ink-700 px-2 py-1 text-[0.7rem] text-white shadow-lg"
+                            class="pointer-events-none absolute bottom-full z-10 mb-2 whitespace-nowrap rounded bg-ink-900 px-2 py-1 text-[0.7rem] text-white shadow-lg"
                         >
                             <span class="block font-semibold">{{ formatMoney(point.value) }}</span>
-                            <span class="block text-ink-200">{{ point.full_label }}</span>
+                            <span class="block text-ink-400">{{ point.full_label }}</span>
                         </div>
                     </div>
                 </div>
 
                 <p
                     v-if="isEmpty"
-                    class="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 text-center text-xs text-slate-400"
+                    class="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 text-center text-xs text-ink-400"
                 >
                     No paid revenue in this period
                 </p>
 
                 <!-- X axis. Every other tick past twelve columns, so thirty days
                      of labels do not collide. -->
-                <div class="mt-2 flex gap-0.5 text-[0.65rem] text-slate-400" aria-hidden="true">
+                <div class="mt-2 flex gap-0.5 text-[0.65rem] text-ink-400" aria-hidden="true">
                     <span
                         v-for="(point, index) in points"
                         :key="point.key"

@@ -17,17 +17,17 @@ class UserSeeder extends Seeder
      * @var list<array{name: string, email: string, role: string}>
      */
     private const STAFF = [
-        ['name' => 'Administrator', 'email' => 'admin@kompra.test', 'role' => 'admin'],
-        ['name' => 'Sales Team', 'email' => 'sales@kompra.test', 'role' => 'sales'],
-        ['name' => 'Stock Custodian', 'email' => 'inventory@kompra.test', 'role' => 'inventory'],
-        ['name' => 'Accounting', 'email' => 'accounts@kompra.test', 'role' => 'accounts'],
-        ['name' => 'Auditor', 'email' => 'auditor@kompra.test', 'role' => 'auditor'],
-        ['name' => 'Human Resources', 'email' => 'hr@kompra.test', 'role' => 'hr'],
+        ['name' => 'Administrator', 'email' => 'admin@sentrix.test', 'role' => 'admin'],
+        ['name' => 'Sales Team', 'email' => 'sales@sentrix.test', 'role' => 'sales'],
+        ['name' => 'Stock Custodian', 'email' => 'inventory@sentrix.test', 'role' => 'inventory'],
+        ['name' => 'Accounting', 'email' => 'accounts@sentrix.test', 'role' => 'accounts'],
+        ['name' => 'Auditor', 'email' => 'auditor@sentrix.test', 'role' => 'auditor'],
+        ['name' => 'Human Resources', 'email' => 'hr@sentrix.test', 'role' => 'hr'],
     ];
 
     public function run(): void
     {
-        $password = Hash::make(config('kompra.seed_password'));
+        $password = Hash::make(config('sentrix.seed_password'));
 
         foreach (self::STAFF as $staff) {
             $user = User::query()->updateOrCreate(
@@ -55,7 +55,7 @@ class UserSeeder extends Seeder
         Branch::query()->where('is_pickup_location', true)->each(
             function (Branch $branch) use ($hashedPassword): void {
                 $user = User::query()->updateOrCreate(
-                    ['email' => $branch->slug.'@kompra.test'],
+                    ['email' => $branch->slug.'@sentrix.test'],
                     [
                         'name' => $branch->name.' Manager',
                         'password' => $hashedPassword,

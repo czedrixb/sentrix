@@ -35,7 +35,7 @@ class PlaceOrderRequest extends FormRequest
                 'required',
                 'date',
                 'after:now',
-                'before_or_equal:'.now()->addDays((int) config('kompra.scheduling.max_days_ahead'))->toDateTimeString(),
+                'before_or_equal:'.now()->addDays((int) config('sentrix.scheduling.max_days_ahead'))->toDateTimeString(),
             ],
         ];
     }

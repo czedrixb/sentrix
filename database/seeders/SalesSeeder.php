@@ -57,63 +57,63 @@ class SalesSeeder extends Seeder
     private const ORDERS = [
         // --- Older, settled business ----------------------------------------
         ['customer' => 'santos', 'branch' => 'davao-city', 'status' => OrderStatus::Completed, 'payment' => PaymentStatus::Paid, 'fulfillment' => FulfillmentType::Pickup, 'days_ago' => 86,
-            'items' => [['EPS-L3250', 1], ['EPS-003BK', 2], ['PAP-A4S20', 3]], 'voucher' => 'WELCOME10', 'archived' => true],
+            'items' => [['HIK-7104NIQ14P', 1], ['HIK-2CD1043G2', 4], ['SEA-SKYHAWK2TB', 1]], 'voucher' => 'WELCOME10', 'archived' => true],
         ['customer' => 'tan', 'branch' => 'cebu-city', 'status' => OrderStatus::Completed, 'payment' => PaymentStatus::Paid, 'fulfillment' => FulfillmentType::Pickup, 'days_ago' => 79,
-            'items' => [['HP-Q2612A', 4], ['ACC-CLEANKIT', 1]]],
+            'items' => [['HIK-2CE16D0T', 4], ['CBL-RG59SIAM', 1]]],
         ['customer' => 'delacruz', 'branch' => 'quezon-city', 'status' => OrderStatus::Completed, 'payment' => PaymentStatus::Paid, 'fulfillment' => FulfillmentType::Delivery, 'days_ago' => 71,
-            'items' => [['KYO-M2040DN', 1], ['KYO-TK1175', 2]], 'delivery_fee' => 850, 'notes' => 'Deliver to the 4th floor admin office. Lift access available until 5pm.', 'archived' => true],
+            'items' => [['HIK-7616NIK216P', 1], ['SEA-SKYHAWK8TB', 2]], 'delivery_fee' => 850, 'notes' => 'Deliver to the 4th floor admin office. Lift access available until 5pm.', 'archived' => true],
         ['customer' => 'macaraeg', 'branch' => 'iloilo-city', 'status' => OrderStatus::Cancelled, 'payment' => PaymentStatus::Pending, 'fulfillment' => FulfillmentType::Pickup, 'days_ago' => 68,
-            'items' => [['BRO-DCPT720DW', 1]], 'notes' => 'Customer called to cancel — bought locally instead.'],
+            'items' => [['DAH-NVR4108HS8P', 1]], 'notes' => 'Customer called to cancel — bought locally instead.'],
         ['customer' => 'lim', 'branch' => 'cebu-city', 'status' => OrderStatus::Completed, 'payment' => PaymentStatus::Paid, 'fulfillment' => FulfillmentType::Pickup, 'days_ago' => 62,
-            'items' => [['PAP-A4S20', 12], ['PAP-LGLS20', 6]], 'voucher' => 'BULKPAPER15'],
+            'items' => [['HIK-2CE16D0T', 12], ['HIK-2CE76D0T', 6]], 'voucher' => 'BULKCAM15'],
         ['customer' => 'abadilla', 'branch' => 'general-santos-city', 'status' => OrderStatus::Completed, 'payment' => PaymentStatus::Paid, 'fulfillment' => FulfillmentType::Delivery, 'days_ago' => 55,
-            'items' => [['RIC-MP2014', 1]], 'delivery_fee' => 1500, 'notes' => 'Installation and basic operator training requested.'],
+            'items' => [['HIK-2DE4225IW', 1]], 'delivery_fee' => 1500, 'notes' => 'Pole mount and commissioning requested.'],
         ['customer' => 'reyes', 'branch' => 'davao-city', 'status' => OrderStatus::Completed, 'payment' => PaymentStatus::Paid, 'fulfillment' => FulfillmentType::Pickup, 'days_ago' => 51,
-            'items' => [['CAN-CRG337', 2], ['SPR-PICKROLL', 1]]],
+            'items' => [['DAH-HDW1439T1', 2], ['PSU-POEINJ', 1]]],
         ['customer' => 'ongkiko', 'branch' => 'malaybalay-city', 'status' => OrderStatus::Completed, 'payment' => PaymentStatus::Paid, 'fulfillment' => FulfillmentType::Pickup, 'days_ago' => 47,
-            'items' => [['PAN-P2500W', 1], ['PAP-A4S20', 2]]],
+            'items' => [['UNV-NVR30104LBP', 1], ['UNV-2124LB', 4]]],
         ['customer' => 'santos', 'branch' => 'davao-city', 'status' => OrderStatus::Completed, 'payment' => PaymentStatus::Refunded, 'fulfillment' => FulfillmentType::Pickup, 'days_ago' => 44,
-            'items' => [['HP-682TRI', 3]], 'notes' => 'Wrong cartridge for the customer\'s model. Refunded in full at the counter.'],
+            'items' => [['DAH-HACB1A21', 3]], 'notes' => 'Analogue cameras bought for an IP recorder. Refunded in full at the counter.'],
         ['customer' => 'delacruz', 'branch' => 'quezon-city', 'status' => OrderStatus::Completed, 'payment' => PaymentStatus::Paid, 'fulfillment' => FulfillmentType::Pickup, 'days_ago' => 40,
-            'items' => [['BDL-SMALLOFFICE', 1]]],
+            'items' => [['BDL-SHOP4', 1]]],
         ['customer' => 'tan', 'branch' => 'tagbilaran-city', 'status' => OrderStatus::Completed, 'payment' => PaymentStatus::Paid, 'fulfillment' => FulfillmentType::Pickup, 'days_ago' => 36,
-            'items' => [['RIS-S4253', 2], ['PAP-RISOMSTR', 2]], 'voucher' => 'SCHOOLSET'],
+            'items' => [['SEA-SKYHAWK4TB', 2], ['WDC-PURPLE4TB', 2]], 'voucher' => 'STORAGE1000'],
         ['customer' => 'lim', 'branch' => 'cebu-city', 'status' => OrderStatus::Cancelled, 'payment' => PaymentStatus::Failed, 'fulfillment' => FulfillmentType::Delivery, 'days_ago' => 33,
-            'items' => [['ACC-PRTSTAND', 2]], 'delivery_fee' => 400, 'notes' => 'Payment declined at the counter; customer did not return.'],
+            'items' => [['PSU-12V10A', 2]], 'delivery_fee' => 400, 'notes' => 'Payment declined at the counter; customer did not return.'],
         ['customer' => 'abadilla', 'branch' => 'general-santos-city', 'status' => OrderStatus::Completed, 'payment' => PaymentStatus::Paid, 'fulfillment' => FulfillmentType::Pickup, 'days_ago' => 29,
-            'items' => [['EPS-664SET', 4]]],
+            'items' => [['EZV-C6N', 4]]],
         ['customer' => 'reyes', 'branch' => 'iloilo-city', 'status' => OrderStatus::Completed, 'payment' => PaymentStatus::Paid, 'fulfillment' => FulfillmentType::Pickup, 'days_ago' => 25,
-            'items' => [['CAN-MF3010', 1], ['CAN-CRG337', 1]], 'voucher' => 'WELCOME10'],
+            'items' => [['DAH-NVR2104HSP', 1], ['DAH-HFW1430S1', 4]], 'voucher' => 'WELCOME10'],
 
         // --- The current month ------------------------------------------------
         ['customer' => 'macaraeg', 'branch' => 'davao-city', 'status' => OrderStatus::Completed, 'payment' => PaymentStatus::Paid, 'fulfillment' => FulfillmentType::Pickup, 'days_ago' => 19,
-            'items' => [['KON-TN116', 3]], 'voucher' => 'INK500'],
+            'items' => [['HIK-2CD2086G2', 3]], 'voucher' => 'CAMERA500'],
         ['customer' => 'ongkiko', 'branch' => 'quezon-city', 'status' => OrderStatus::Completed, 'payment' => PaymentStatus::Paid, 'fulfillment' => FulfillmentType::Delivery, 'days_ago' => 17,
-            'items' => [['XER-B215', 1], ['PAP-LGLS20', 4]], 'delivery_fee' => 650],
+            'items' => [['HIK-KIS603P', 1], ['ZKT-AL280', 2]], 'delivery_fee' => 650],
         ['customer' => 'santos', 'branch' => 'davao-city', 'status' => OrderStatus::Completed, 'payment' => PaymentStatus::Paid, 'fulfillment' => FulfillmentType::Pickup, 'days_ago' => 14,
-            'items' => [['EPS-003BK', 4], ['PAP-A4S20', 2]]],
+            'items' => [['CBL-CAT6UTP', 2], ['CBL-RJ45100', 2]]],
         ['customer' => 'lim', 'branch' => 'cebu-city', 'status' => OrderStatus::Completed, 'payment' => PaymentStatus::Paid, 'fulfillment' => FulfillmentType::Pickup, 'days_ago' => 12,
-            'items' => [['BRO-HLL2350DW', 1], ['SPR-DRUMBR', 1]]],
+            'items' => [['ZKT-F18', 1], ['GEN-EXITBTN', 2]]],
         ['customer' => 'delacruz', 'branch' => 'quezon-city', 'status' => OrderStatus::Completed, 'payment' => PaymentStatus::Paid, 'fulfillment' => FulfillmentType::Pickup, 'days_ago' => 10,
-            'items' => [['HP-GT52SET', 2], ['HP-682TRI', 2]], 'voucher' => 'INK500'],
+            'items' => [['DAH-HDBW2841E', 2], ['DAH-HFW2449S', 2]], 'voucher' => 'CAMERA500'],
         ['customer' => 'tan', 'branch' => 'malaybalay-city', 'status' => OrderStatus::Ready, 'payment' => PaymentStatus::Paid, 'fulfillment' => FulfillmentType::Pickup, 'days_ago' => 8,
-            'items' => [['SAM-M2020', 1], ['SAM-MLTD111S', 2]]],
+            'items' => [['PAR-SP4000', 1], ['PAR-NV5', 4], ['PAR-K10V', 1]]],
         ['customer' => 'abadilla', 'branch' => 'general-santos-city', 'status' => OrderStatus::Ready, 'payment' => PaymentStatus::Pending, 'fulfillment' => FulfillmentType::Pickup, 'days_ago' => 6,
-            'items' => [['PAP-A4S20', 10], ['PAP-STICKA4', 3]], 'voucher' => 'BULKPAPER15', 'notes' => 'Please prepare by Friday morning — collection before 10am.'],
+            'items' => [['DAH-HACB1A21', 10], ['CBL-BNC20', 3]], 'voucher' => 'BULKCAM15', 'notes' => 'Please prepare by Friday morning — collection before 10am.'],
         ['customer' => 'reyes', 'branch' => 'davao-city', 'status' => OrderStatus::Preparing, 'payment' => PaymentStatus::Paid, 'fulfillment' => FulfillmentType::Pickup, 'days_ago' => 5,
-            'items' => [['BDL-HOMESTUDY', 1]]],
+            'items' => [['BDL-HOMEWIFI', 1]]],
         ['customer' => 'macaraeg', 'branch' => 'iloilo-city', 'status' => OrderStatus::Preparing, 'payment' => PaymentStatus::Pending, 'fulfillment' => FulfillmentType::Delivery, 'days_ago' => 4,
-            'items' => [['KYO-TA2020', 1]], 'delivery_fee' => 1200, 'notes' => 'Ground floor delivery. Contact the property administrator on arrival.'],
+            'items' => [['DAH-SD49225XA', 1]], 'delivery_fee' => 1200, 'notes' => 'Ground floor delivery. Contact the property administrator on arrival.'],
         ['customer' => 'ongkiko', 'branch' => 'cebu-city', 'status' => OrderStatus::Confirmed, 'payment' => PaymentStatus::Paid, 'fulfillment' => FulfillmentType::Pickup, 'days_ago' => 3,
-            'items' => [['CAN-DRC225', 1], ['ACC-USBPRT3M', 1]]],
+            'items' => [['REO-RLC823A', 1], ['PSU-SURGE4', 1]]],
         ['customer' => 'santos', 'branch' => 'davao-city', 'status' => OrderStatus::Confirmed, 'payment' => PaymentStatus::Pending, 'fulfillment' => FulfillmentType::Pickup, 'days_ago' => 2,
-            'items' => [['ACC-AVR500', 2], ['ACC-CLEANKIT', 1]]],
+            'items' => [['GEN-SIREN30W', 2], ['GEN-PANICBTN', 1]]],
         ['customer' => 'lim', 'branch' => 'tagbilaran-city', 'status' => OrderStatus::Pending, 'payment' => PaymentStatus::Pending, 'fulfillment' => FulfillmentType::Pickup, 'days_ago' => 1,
-            'items' => [['RIC-SP200', 2], ['PAP-A4S20', 4]]],
+            'items' => [['UNV-3614LE', 2], ['CBL-CAT6UTP', 1]]],
         ['customer' => 'delacruz', 'branch' => 'quezon-city', 'status' => OrderStatus::Pending, 'payment' => PaymentStatus::Pending, 'fulfillment' => FulfillmentType::Delivery, 'days_ago' => 1,
-            'items' => [['KYO-P2040DN', 1], ['KYO-TK1175', 1]], 'delivery_fee' => 750],
+            'items' => [['DAH-NVR5232', 1], ['SEA-SKYHAWK8TB', 1]], 'delivery_fee' => 750],
         ['customer' => 'reyes', 'branch' => 'davao-city', 'status' => OrderStatus::Pending, 'payment' => PaymentStatus::Pending, 'fulfillment' => FulfillmentType::Pickup, 'days_ago' => 0,
-            'items' => [['EPS-L3210', 1], ['EPS-003BK', 2]], 'voucher' => 'WELCOME10'],
+            'items' => [['HIK-7204HGHIK1', 1], ['HIK-2CE16D0T', 4]], 'voucher' => 'WELCOME10'],
     ];
 
     /**
@@ -126,47 +126,47 @@ class SalesSeeder extends Seeder
         [
             'name' => 'Fr. Antonio Villamor', 'email' => 'parish.office@example.ph', 'phone' => '9171112233',
             'branch' => 'tagbilaran-city', 'days_ago' => 27, 'handled_days' => 26,
-            'message' => 'Good day. Our parish prints around 1,500 bulletins every Sunday on an old Riso that is now streaking badly. Could someone look at it, and could you also quote a replacement? We would need it before the fiesta season.',
+            'message' => 'Good day. Our parish hall has four old analogue cameras that have stopped recording — the DVR shows a blue screen on every channel. Could someone look at it, and could you also quote a replacement system? We would need it before the fiesta season.',
         ],
         [
             'name' => 'Cherry Ann Bautista', 'email' => 'cherryann.bautista@example.ph', 'phone' => '9182223344',
             'branch' => 'davao-city', 'days_ago' => 21, 'handled_days' => 20,
-            'message' => 'Hi, is the EcoTank L5290 available in Davao? I need the document feeder for scanning permits. Also please confirm if you accept purchase orders from a cooperative.',
+            'message' => 'Hi, is the DS-7108NI-Q1/8P available in Davao? I need eight channels for our cooperative office. Also please confirm if you accept purchase orders from a cooperative.',
         ],
         [
             'name' => 'Engr. Rolando Ceniza', 'email' => 'r.ceniza@example.ph', 'phone' => '9273334455',
             'branch' => 'cebu-city', 'days_ago' => 16, 'handled_days' => 14,
-            'message' => 'We are fitting out a new site office and need three mono lasers with duplex, plus a year of toner. Could you prepare a quotation with bulk pricing on the toner? Delivery to Mandaue.',
+            'message' => 'We are fitting out a new site office and need twelve IP cameras, a sixteen-channel recorder and the cabling. Could you prepare a quotation with bulk pricing on the cable? Delivery and installation to Mandaue.',
         ],
         [
             'name' => 'Sheila Marie Ompoc', 'email' => 'sheila.ompoc@example.ph', 'phone' => '9954445566',
             'branch' => null, 'days_ago' => 12, 'handled_days' => 11,
-            'message' => 'Do you have a branch anywhere in Northern Mindanao? I am in Cagayan de Oro and the nearest one on your list is Malaybalay. Do you deliver, and is there a minimum order?',
+            'message' => 'Do you have a branch anywhere in Northern Mindanao? I am in Cagayan de Oro and the nearest one on your list is Malaybalay. Do you deliver and install, and is there a minimum order?',
         ],
         [
             'name' => 'Jomar Estrella', 'email' => 'jomar.estrella@example.ph', 'phone' => '9065556677',
             'branch' => 'general-santos-city', 'days_ago' => 9, 'handled_days' => 8,
-            'message' => 'My Canon MF3010 prints a grey band down the left side of every page. I already replaced the cartridge and it did not help. How much is a service, and how long would you need to keep the machine?',
+            'message' => 'Two of my cameras drop out every night at around eight and come back in the morning. I already replaced the power supply and it did not help. How much is a service call, and would you need to take anything away?',
         ],
         [
             'name' => 'Maricel Alonzo', 'email' => 'maricel.alonzo@example.ph', 'phone' => '9176667788',
             'branch' => 'iloilo-city', 'days_ago' => 6, 'handled_days' => null,
-            'message' => 'Requesting a quotation for 20 boxes of A4 substance 20 and 10 boxes of long bond, delivered to our school in Oton. We will be paying by cheque against a purchase order — please advise on your terms.',
+            'message' => 'Requesting a quotation for 20 dome cameras and 3 eight-channel recorders, delivered to our school in Oton. We will be paying by cheque against a purchase order — please advise on your terms.',
         ],
         [
             'name' => 'Dr. Nathaniel Gorospe', 'email' => 'clinic.gorospe@example.ph', 'phone' => '9187778899',
             'branch' => 'quezon-city', 'days_ago' => 4, 'handled_days' => null,
-            'message' => 'I need a printer for a small clinic — prescriptions and records, maybe 400 pages a month, and the print must not smudge. Would you recommend laser over an ink tank for this? Budget is around 12,000.',
+            'message' => 'I need cameras for a small clinic — the waiting area, the corridor and the dispensary, and the footage must be clear enough to identify someone. Would you recommend colour night vision for this? Budget is around 25,000.',
         ],
         [
             'name' => 'Kristine Joy Panganiban', 'email' => 'kj.panganiban@example.ph', 'phone' => '9278889900',
             'branch' => 'davao-city', 'days_ago' => 3, 'handled_days' => null,
-            'message' => 'Is the OKI 45807111 toner in stock in Davao? Your site shows only two. I need four and can wait a few days if you are expecting a delivery.',
+            'message' => 'Is the SkyHawk 8TB drive in stock in Davao? Your site shows only two. I need four and can wait a few days if you are expecting a delivery.',
         ],
         [
             'name' => 'Arnel Bacaltos', 'email' => 'arnel.bacaltos@example.ph', 'phone' => '9179990011',
             'branch' => 'malaybalay-city', 'days_ago' => 2, 'handled_days' => null,
-            'message' => 'Our office copier keeps reporting a full waste toner box. Do you stock the container for the TASKalfa 2020, and can I collect it myself or does a technician have to fit it?',
+            'message' => 'Our recorder keeps reporting that the disk is full and has stopped overwriting. Do you stock a 4TB surveillance drive, and can I collect it myself or does a technician have to fit it?',
         ],
         [
             'name' => 'Lourdes Fernandez', 'email' => 'lourdes.fernandez@example.ph', 'phone' => '9180001122',
@@ -200,7 +200,7 @@ class SalesSeeder extends Seeder
      */
     private function seedCustomers(): Collection
     {
-        $password = Hash::make(config('kompra.seed_password'));
+        $password = Hash::make(config('sentrix.seed_password'));
 
         return collect(self::CUSTOMERS)
             ->filter(fn (array $customer): bool => $customer['account'])
@@ -350,7 +350,7 @@ class SalesSeeder extends Seeder
         $datePart = $placedAt->format('ymd');
         $sequences[$datePart] = ($sequences[$datePart] ?? 0) + 1;
 
-        return sprintf('%s-%s-%04d', config('kompra.order_number_prefix'), $datePart, $sequences[$datePart]);
+        return sprintf('%s-%s-%04d', config('sentrix.order_number_prefix'), $datePart, $sequences[$datePart]);
     }
 
     /**

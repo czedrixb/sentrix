@@ -56,7 +56,7 @@ async function submit() {
         <div>
             <label class="field-label">Mobile number</label>
             <div class="flex">
-                <span class="rounded-l border border-r-0 border-slate-300 bg-slate-50 px-3 py-2 text-sm text-slate-500">+63</span>
+                <span class="rounded-l border border-r-0 border-ink-200 bg-ink-50 px-3 py-2 text-sm text-ink-400">+63</span>
                 <input v-model="form.phone" class="field-input rounded-l-none" placeholder="9171234567" inputmode="numeric">
             </div>
             <span v-if="errors.phone" class="field-error">{{ errors.phone[0] }}</span>

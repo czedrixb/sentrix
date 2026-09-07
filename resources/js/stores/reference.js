@@ -54,7 +54,7 @@ export const useReferenceStore = defineStore('reference', {
             this.selectedBranchSlug = slug;
 
             try {
-                window.localStorage.setItem('kompra.branch', slug ?? '');
+                window.localStorage.setItem('sentrix.branch', slug ?? '');
             } catch {
                 // Storage can be unavailable (private mode); the choice simply
                 // does not persist between visits.
@@ -69,7 +69,7 @@ export const useReferenceStore = defineStore('reference', {
             let stored = null;
 
             try {
-                stored = window.localStorage.getItem('kompra.branch');
+                stored = window.localStorage.getItem('sentrix.branch');
             } catch {
                 stored = null;
             }

@@ -104,10 +104,10 @@ function submitSearch() {
 <template>
     <div class="mx-auto max-w-7xl px-4 py-10">
         <header class="mb-8">
-            <h1 class="font-display text-4xl text-ink-700">Shop</h1>
-            <p class="mt-1 text-sm text-slate-500">
+            <h1 class="font-display text-4xl text-ink-900">Shop</h1>
+            <p class="mt-1 text-sm text-ink-400">
                 Showing stock for
-                <strong class="text-ink-700">{{ reference.selectedBranch?.name ?? 'all branches' }}</strong>
+                <strong class="text-ink-900">{{ reference.selectedBranch?.name ?? 'all branches' }}</strong>
             </p>
         </header>
 
@@ -119,21 +119,21 @@ function submitSearch() {
                 </form>
 
                 <section>
-                    <h2 class="mb-2 font-heading text-sm font-bold uppercase tracking-wide text-slate-500">Categories</h2>
+                    <h2 class="mb-2 font-heading text-sm font-semibold uppercase tracking-wide text-ink-400">Categories</h2>
                     <label
                         v-for="category in reference.flatCategories"
                         :key="category.id"
                         class="flex items-center gap-2 py-1 text-sm"
                     >
                         <input v-model="selectedCategories" type="checkbox" :value="category.slug" class="rounded">
-                        <span :class="category.parent_id ? 'pl-2 text-slate-600' : 'font-semibold text-ink-700'">
+                        <span :class="category.parent_id ? 'pl-2 text-ink-500' : 'font-semibold text-ink-700'">
                             {{ category.name }}
                         </span>
                     </label>
                 </section>
 
                 <section>
-                    <h2 class="mb-2 font-heading text-sm font-bold uppercase tracking-wide text-slate-500">Brands</h2>
+                    <h2 class="mb-2 font-heading text-sm font-semibold uppercase tracking-wide text-ink-400">Brands</h2>
                     <label v-for="brand in reference.brands" :key="brand.id" class="flex items-center gap-2 py-1 text-sm">
                         <input v-model="selectedBrands" type="checkbox" :value="brand.slug" class="rounded">
                         <span>{{ brand.name }}</span>
@@ -147,13 +147,13 @@ function submitSearch() {
 
             <section>
                 <div class="mb-4 flex items-center justify-between">
-                    <p class="text-sm text-slate-500">
+                    <p class="text-sm text-ink-400">
                         <span v-if="meta">{{ meta.total }} product{{ meta.total === 1 ? '' : 's' }}</span>
                     </p>
 
                     <label class="flex items-center gap-2 text-sm">
-                        <span class="text-slate-500">Sort</span>
-                        <select v-model="sort" class="rounded border border-slate-300 px-2 py-1.5 text-sm">
+                        <span class="text-ink-400">Sort</span>
+                        <select v-model="sort" class="rounded border border-ink-200 px-2 py-1.5 text-sm">
                             <option value="latest">Newest</option>
                             <option value="price_asc">Price: low to high</option>
                             <option value="price_desc">Price: high to low</option>
@@ -163,12 +163,12 @@ function submitSearch() {
                 </div>
 
                 <div v-if="loading" class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-                    <div v-for="n in 6" :key="n" class="h-80 animate-pulse rounded-lg bg-slate-100" />
+                    <div v-for="n in 6" :key="n" class="h-80 animate-pulse rounded-2xl bg-ink-100" />
                 </div>
 
                 <div v-else-if="products.length === 0" class="card p-12 text-center">
-                    <p class="font-heading text-lg font-semibold text-ink-700">Nothing matches those filters</p>
-                    <p class="mt-1 text-sm text-slate-500">Try a different branch, category or search term.</p>
+                    <p class="font-heading text-lg font-semibold text-ink-900">Nothing matches those filters</p>
+                    <p class="mt-1 text-sm text-ink-400">Try a different branch, category or search term.</p>
                 </div>
 
                 <div v-else class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">

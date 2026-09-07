@@ -71,8 +71,8 @@ onMounted(crud.load);
     <div>
         <header class="mb-6 flex flex-wrap items-center justify-between gap-3">
             <div>
-                <h1 class="font-heading text-2xl font-bold text-ink-700">News</h1>
-                <p class="text-sm text-slate-500">Posts shown on the storefront news page.</p>
+                <h1 class="font-heading text-2xl font-semibold text-ink-900">News</h1>
+                <p class="text-sm text-ink-400">Posts shown on the storefront news page.</p>
             </div>
 
             <button v-if="canManage()" type="button" class="btn-primary" @click="crud.startCreate">
@@ -83,13 +83,13 @@ onMounted(crud.load);
         <p v-if="notice" class="mb-4 rounded bg-emerald-50 p-3 text-sm text-emerald-700">{{ notice }}</p>
 
         <div v-if="loading" class="space-y-3">
-            <div v-for="n in 5" :key="n" class="h-20 animate-pulse rounded-lg bg-white" />
+            <div v-for="n in 5" :key="n" class="h-20 animate-pulse rounded-2xl bg-white" />
         </div>
 
         <template v-else>
             <div class="card overflow-x-auto">
                 <table class="w-full text-sm">
-                    <thead class="bg-slate-50 text-left text-xs uppercase tracking-wide text-slate-400">
+                    <thead class="bg-ink-50 text-left text-xs uppercase tracking-wide text-ink-400">
                         <tr>
                             <th class="px-4 py-3">Post</th>
                             <th class="px-4 py-3">Author</th>
@@ -97,11 +97,11 @@ onMounted(crud.load);
                             <th class="px-4 py-3" />
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-slate-100">
+                    <tbody class="divide-y divide-ink-100">
                         <tr v-for="post in posts" :key="post.id">
                             <td class="px-4 py-3">
                                 <div class="flex items-center gap-3">
-                                    <div class="size-12 shrink-0 overflow-hidden rounded bg-slate-100">
+                                    <div class="size-12 shrink-0 overflow-hidden rounded bg-ink-100">
                                         <img
                                             v-if="post.thumbnail_url"
                                             :src="post.thumbnail_url"
@@ -110,13 +110,13 @@ onMounted(crud.load);
                                         >
                                     </div>
                                     <div class="min-w-0">
-                                        <p class="truncate font-semibold text-ink-700">{{ post.title }}</p>
-                                        <p class="truncate text-xs text-slate-500">/{{ post.slug }}</p>
+                                        <p class="truncate font-semibold text-ink-900">{{ post.title }}</p>
+                                        <p class="truncate text-xs text-ink-400">/{{ post.slug }}</p>
                                     </div>
                                 </div>
                             </td>
-                            <td class="px-4 py-3 text-slate-600">{{ post.author ?? '—' }}</td>
-                            <td class="px-4 py-3 text-slate-600">
+                            <td class="px-4 py-3 text-ink-500">{{ post.author ?? '—' }}</td>
+                            <td class="px-4 py-3 text-ink-500">
                                 {{ post.published_at ? formatDate(post.published_at) : 'Draft' }}
                             </td>
                             <td class="px-4 py-3 text-right">
@@ -135,7 +135,7 @@ onMounted(crud.load);
                             </td>
                         </tr>
                         <tr v-if="posts.length === 0">
-                            <td colspan="4" class="px-4 py-8 text-center text-slate-400">No posts yet.</td>
+                            <td colspan="4" class="px-4 py-8 text-center text-ink-400">No posts yet.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -146,7 +146,7 @@ onMounted(crud.load);
 
         <div v-if="showForm" class="fixed inset-0 z-50 grid place-items-center bg-black/40 p-4">
             <form class="card max-h-full w-full max-w-2xl overflow-auto p-6" @submit.prevent="submit">
-                <h2 class="font-heading text-lg font-bold text-ink-700">
+                <h2 class="font-heading text-lg font-semibold text-ink-900">
                     {{ editing ? `Edit ${editing.title}` : 'New post' }}
                 </h2>
 

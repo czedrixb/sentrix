@@ -108,8 +108,8 @@ onMounted(load);
     <div>
         <header class="mb-6 flex flex-wrap items-center justify-between gap-3">
             <div>
-                <h1 class="font-heading text-2xl font-bold text-ink-700">Branches</h1>
-                <p class="text-sm text-slate-500">
+                <h1 class="font-heading text-2xl font-semibold text-ink-900">Branches</h1>
+                <p class="text-sm text-ink-400">
                     Adding a branch takes effect everywhere immediately &mdash; no deployment required.
                 </p>
             </div>
@@ -122,12 +122,12 @@ onMounted(load);
         <p v-if="notice" class="mb-4 rounded bg-emerald-50 p-3 text-sm text-emerald-700">{{ notice }}</p>
 
         <div v-if="loading" class="space-y-3">
-            <div v-for="n in 4" :key="n" class="h-16 animate-pulse rounded-lg bg-white" />
+            <div v-for="n in 4" :key="n" class="h-16 animate-pulse rounded-2xl bg-white" />
         </div>
 
         <div v-else class="card overflow-hidden">
             <table class="w-full text-sm">
-                <thead class="bg-slate-50 text-left text-xs uppercase tracking-wide text-slate-400">
+                <thead class="bg-ink-50 text-left text-xs uppercase tracking-wide text-ink-400">
                     <tr>
                         <th class="px-4 py-3">Branch</th>
                         <th class="px-4 py-3">Contact</th>
@@ -135,20 +135,20 @@ onMounted(load);
                         <th class="px-4 py-3" />
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-slate-100">
+                <tbody class="divide-y divide-ink-100">
                     <tr v-for="branch in branches" :key="branch.id">
                         <td class="px-4 py-3">
-                            <p class="font-semibold text-ink-700">{{ branch.name }}</p>
-                            <p class="text-xs text-slate-500">{{ branch.address }}</p>
+                            <p class="font-semibold text-ink-900">{{ branch.name }}</p>
+                            <p class="text-xs text-ink-400">{{ branch.address }}</p>
                         </td>
-                        <td class="px-4 py-3 text-slate-600">
+                        <td class="px-4 py-3 text-ink-500">
                             <p v-if="branch.phone">{{ branch.phone }}</p>
-                            <p v-if="branch.email" class="text-xs text-slate-500">{{ branch.email }}</p>
+                            <p v-if="branch.email" class="text-xs text-ink-400">{{ branch.email }}</p>
                         </td>
                         <td class="px-4 py-3">
                             <span
                                 class="rounded-full px-2 py-0.5 text-xs font-semibold"
-                                :class="branch.is_pickup_location ? 'bg-emerald-50 text-emerald-700' : 'bg-slate-100 text-slate-500'"
+                                :class="branch.is_pickup_location ? 'bg-emerald-50 text-emerald-700' : 'bg-ink-100 text-ink-400'"
                             >{{ branch.is_pickup_location ? 'Yes' : 'Warehouse' }}</span>
                         </td>
                         <td class="px-4 py-3 text-right">
@@ -167,7 +167,7 @@ onMounted(load);
         <!-- Create / edit -->
         <div v-if="showForm" class="fixed inset-0 z-50 grid place-items-center bg-black/40 p-4">
             <form class="card max-h-full w-full max-w-lg overflow-auto p-6" @submit.prevent="save">
-                <h2 class="font-heading text-lg font-bold text-ink-700">
+                <h2 class="font-heading text-lg font-semibold text-ink-900">
                     {{ editing ? `Edit ${editing.name}` : 'New branch' }}
                 </h2>
 

@@ -42,7 +42,7 @@ class CartService
         $cart ??= Cart::query()->create([
             'token' => Str::uuid()->toString(),
             'user_id' => $user?->id,
-            'expires_at' => now()->addDays((int) config('kompra.cart.lifetime_days')),
+            'expires_at' => now()->addDays((int) config('sentrix.cart.lifetime_days')),
         ]);
 
         if ($user !== null && $cart->user_id === null) {

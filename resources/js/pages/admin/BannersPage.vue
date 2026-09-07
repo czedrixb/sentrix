@@ -57,8 +57,8 @@ onMounted(crud.load);
     <div>
         <header class="mb-6 flex flex-wrap items-center justify-between gap-3">
             <div>
-                <h1 class="font-heading text-2xl font-bold text-ink-700">Banners</h1>
-                <p class="text-sm text-slate-500">The rotating panel at the top of the homepage.</p>
+                <h1 class="font-heading text-2xl font-semibold text-ink-900">Banners</h1>
+                <p class="text-sm text-ink-400">The rotating panel at the top of the homepage.</p>
             </div>
 
             <button v-if="canManage()" type="button" class="btn-primary" @click="crud.startCreate">
@@ -69,7 +69,7 @@ onMounted(crud.load);
         <p v-if="notice" class="mb-4 rounded bg-emerald-50 p-3 text-sm text-emerald-700">{{ notice }}</p>
 
         <div v-if="loading" class="grid gap-4 sm:grid-cols-2">
-            <div v-for="n in 4" :key="n" class="h-48 animate-pulse rounded-lg bg-white" />
+            <div v-for="n in 4" :key="n" class="h-48 animate-pulse rounded-2xl bg-white" />
         </div>
 
         <div v-else class="grid gap-4 sm:grid-cols-2">
@@ -78,9 +78,9 @@ onMounted(crud.load);
 
                 <div class="flex items-start gap-3 p-4">
                     <div class="min-w-0 flex-1">
-                        <p class="font-semibold text-ink-700">{{ banner.headline ?? 'No headline' }}</p>
-                        <p class="truncate text-xs text-slate-500">{{ banner.link_url ?? 'Not linked' }}</p>
-                        <p class="text-xs text-slate-400">Position {{ banner.position }}</p>
+                        <p class="font-semibold text-ink-900">{{ banner.headline ?? 'No headline' }}</p>
+                        <p class="truncate text-xs text-ink-400">{{ banner.link_url ?? 'Not linked' }}</p>
+                        <p class="text-xs text-ink-400">Position {{ banner.position }}</p>
                     </div>
 
                     <div v-if="canManage()" class="flex shrink-0 flex-col items-end">
@@ -96,12 +96,12 @@ onMounted(crud.load);
                 </div>
             </article>
 
-            <p v-if="banners.length === 0" class="col-span-full py-8 text-center text-slate-400">No banners yet.</p>
+            <p v-if="banners.length === 0" class="col-span-full py-8 text-center text-ink-400">No banners yet.</p>
         </div>
 
         <div v-if="showForm" class="fixed inset-0 z-50 grid place-items-center bg-black/40 p-4">
             <form class="card max-h-full w-full max-w-md overflow-auto p-6" @submit.prevent="submit">
-                <h2 class="font-heading text-lg font-bold text-ink-700">
+                <h2 class="font-heading text-lg font-semibold text-ink-900">
                     {{ editing ? 'Edit banner' : 'New banner' }}
                 </h2>
 

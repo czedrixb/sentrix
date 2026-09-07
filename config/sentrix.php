@@ -12,7 +12,7 @@ return [
     |
     */
 
-    'order_number_prefix' => env('KOMPRA_ORDER_PREFIX', 'KMP'),
+    'order_number_prefix' => env('SENTRIX_ORDER_PREFIX', 'SNX'),
 
     /*
     |--------------------------------------------------------------------------
@@ -26,8 +26,8 @@ return [
     */
 
     'cart' => [
-        'cookie' => 'kompra_cart',
-        'lifetime_days' => (int) env('KOMPRA_CART_LIFETIME_DAYS', 30),
+        'cookie' => 'sentrix_cart',
+        'lifetime_days' => (int) env('SENTRIX_CART_LIFETIME_DAYS', 30),
     ],
 
     /*
@@ -40,10 +40,10 @@ return [
     */
 
     'scheduling' => [
-        'opens_at' => env('KOMPRA_SCHEDULE_OPENS_AT', '08:00'),
-        'closes_at' => env('KOMPRA_SCHEDULE_CLOSES_AT', '17:00'),
-        'slot_minutes' => (int) env('KOMPRA_SCHEDULE_SLOT_MINUTES', 30),
-        'max_days_ahead' => (int) env('KOMPRA_SCHEDULE_MAX_DAYS_AHEAD', 60),
+        'opens_at' => env('SENTRIX_SCHEDULE_OPENS_AT', '08:00'),
+        'closes_at' => env('SENTRIX_SCHEDULE_CLOSES_AT', '17:00'),
+        'slot_minutes' => (int) env('SENTRIX_SCHEDULE_SLOT_MINUTES', 30),
+        'max_days_ahead' => (int) env('SENTRIX_SCHEDULE_MAX_DAYS_AHEAD', 60),
     ],
 
     /*

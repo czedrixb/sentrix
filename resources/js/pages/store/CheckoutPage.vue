@@ -144,18 +144,18 @@ async function placeOrder() {
 
 <template>
     <div class="mx-auto max-w-5xl px-4 py-10">
-        <h1 class="font-display text-4xl text-ink-700">Checkout</h1>
+        <h1 class="font-display text-4xl text-ink-900">Checkout</h1>
 
         <div v-if="cart.isEmpty" class="card mt-8 p-12 text-center">
-            <p class="font-heading text-lg font-semibold text-ink-700">There is nothing to check out</p>
+            <p class="font-heading text-lg font-semibold text-ink-900">There is nothing to check out</p>
             <RouterLink :to="{ name: 'shop' }" class="btn-primary mt-4">Browse the shop</RouterLink>
         </div>
 
         <div v-else class="mt-6">
             <ol class="mb-8 flex items-center gap-4 text-sm font-heading font-semibold">
-                <li :class="step === 1 ? 'text-brand-500' : 'text-slate-400'">1. Your details</li>
-                <li class="h-px flex-1 bg-slate-200" />
-                <li :class="step === 2 ? 'text-brand-500' : 'text-slate-400'">2. Review &amp; place</li>
+                <li :class="step === 1 ? 'text-brand-600' : 'text-ink-400'">1. Your details</li>
+                <li class="h-px flex-1 bg-ink-200" />
+                <li :class="step === 2 ? 'text-brand-600' : 'text-ink-400'">2. Review &amp; place</li>
             </ol>
 
             <p v-if="generalError" class="mb-4 rounded bg-red-50 p-3 text-sm text-red-700">{{ generalError }}</p>
@@ -164,7 +164,7 @@ async function placeOrder() {
             <form v-show="step === 1" class="grid gap-8 lg:grid-cols-[1fr_18rem]" @submit.prevent="goToReview">
                 <div class="space-y-5">
                     <fieldset class="card p-5">
-                        <legend class="px-1 font-heading font-bold text-ink-700">Contact</legend>
+                        <legend class="px-1 font-heading font-semibold text-ink-900">Contact</legend>
 
                         <div class="grid gap-4 sm:grid-cols-2">
                             <div>
@@ -185,7 +185,7 @@ async function placeOrder() {
                             <div>
                                 <label class="field-label" for="phone">Mobile number</label>
                                 <div class="flex">
-                                    <span class="rounded-l border border-r-0 border-slate-300 bg-slate-50 px-3 py-2 text-sm text-slate-500">+63</span>
+                                    <span class="rounded-l border border-r-0 border-ink-200 bg-ink-50 px-3 py-2 text-sm text-ink-400">+63</span>
                                     <input id="phone" v-model="form.customer_phone" class="field-input rounded-l-none" placeholder="9171234567" inputmode="numeric">
                                 </div>
                                 <span v-if="errors.customer_phone" class="field-error">{{ errors.customer_phone[0] }}</span>
@@ -194,31 +194,31 @@ async function placeOrder() {
                     </fieldset>
 
                     <fieldset class="card p-5">
-                        <legend class="px-1 font-heading font-bold text-ink-700">How would you like it?</legend>
+                        <legend class="px-1 font-heading font-semibold text-ink-900">How would you like it?</legend>
 
                         <div class="grid gap-3 sm:grid-cols-2">
                             <button
                                 type="button"
                                 class="rounded border p-4 text-left"
-                                :class="form.fulfillment_type === 'pickup' ? 'border-brand-500 bg-brand-50' : 'border-slate-300'"
+                                :class="form.fulfillment_type === 'pickup' ? 'border-brand-400 bg-brand-50' : 'border-ink-200'"
                                 @click="chooseFulfillment('pickup')"
                             >
-                                <span class="font-heading font-semibold text-ink-700">Branch pick-up</span>
-                                <span class="mt-1 block text-xs text-slate-500">Collect from {{ cart.branch?.name }}</span>
+                                <span class="font-heading font-semibold text-ink-900">Branch pick-up</span>
+                                <span class="mt-1 block text-xs text-ink-400">Collect from {{ cart.branch?.name }}</span>
                             </button>
 
                             <button
                                 type="button"
                                 class="rounded border p-4 text-left"
                                 :class="[
-                                    form.fulfillment_type === 'delivery' ? 'border-brand-500 bg-brand-50' : 'border-slate-300',
+                                    form.fulfillment_type === 'delivery' ? 'border-brand-400 bg-brand-50' : 'border-ink-200',
                                     !deliveryAvailable && 'cursor-not-allowed opacity-50',
                                 ]"
                                 :disabled="!deliveryAvailable"
                                 @click="chooseFulfillment('delivery')"
                             >
-                                <span class="font-heading font-semibold text-ink-700">Delivery</span>
-                                <span class="mt-1 block text-xs text-slate-500">
+                                <span class="font-heading font-semibold text-ink-900">Delivery</span>
+                                <span class="mt-1 block text-xs text-ink-400">
                                     {{ deliveryAvailable ? 'Arranged by the branch' : 'Not available for these items' }}
                                 </span>
                             </button>
@@ -255,14 +255,14 @@ async function placeOrder() {
                 </div>
 
                 <aside class="card h-fit p-5">
-                    <h2 class="font-heading font-bold text-ink-700">Order summary</h2>
+                    <h2 class="font-heading font-semibold text-ink-900">Order summary</h2>
                     <ul class="mt-3 space-y-2 text-sm">
                         <li v-for="item in cart.items" :key="item.id" class="flex justify-between gap-3">
-                            <span class="text-slate-600">{{ item.quantity }} &times; {{ item.product.name }}</span>
+                            <span class="text-ink-500">{{ item.quantity }} &times; {{ item.product.name }}</span>
                             <span>{{ formatMoney(item.line_total) }}</span>
                         </li>
                     </ul>
-                    <div class="mt-4 flex justify-between border-t border-slate-200 pt-3 font-heading font-bold text-ink-700">
+                    <div class="mt-4 flex justify-between border-t border-ink-200 pt-3 font-heading font-semibold text-ink-900">
                         <span>Total</span>
                         <span>{{ formatMoney(cart.totals.grand_total) }}</span>
                     </div>
@@ -273,26 +273,26 @@ async function placeOrder() {
             <div v-show="step === 2" class="grid gap-8 lg:grid-cols-[1fr_18rem]">
                 <div class="space-y-5">
                     <section class="card p-5">
-                        <h2 class="font-heading font-bold text-ink-700">Confirm your details</h2>
+                        <h2 class="font-heading font-semibold text-ink-900">Confirm your details</h2>
                         <dl class="mt-3 grid gap-2 text-sm sm:grid-cols-2">
-                            <div><dt class="text-slate-500">Name</dt><dd>{{ form.customer_first_name }} {{ form.customer_last_name }}</dd></div>
-                            <div><dt class="text-slate-500">Email</dt><dd>{{ form.customer_email }}</dd></div>
-                            <div><dt class="text-slate-500">Mobile</dt><dd>+63 {{ form.customer_phone }}</dd></div>
-                            <div><dt class="text-slate-500">Branch</dt><dd>{{ cart.branch?.name }}</dd></div>
+                            <div><dt class="text-ink-400">Name</dt><dd>{{ form.customer_first_name }} {{ form.customer_last_name }}</dd></div>
+                            <div><dt class="text-ink-400">Email</dt><dd>{{ form.customer_email }}</dd></div>
+                            <div><dt class="text-ink-400">Mobile</dt><dd>+63 {{ form.customer_phone }}</dd></div>
+                            <div><dt class="text-ink-400">Branch</dt><dd>{{ cart.branch?.name }}</dd></div>
                             <div>
-                                <dt class="text-slate-500">Fulfilment</dt>
+                                <dt class="text-ink-400">Fulfilment</dt>
                                 <dd class="capitalize">{{ form.fulfillment_type }}</dd>
                             </div>
-                            <div><dt class="text-slate-500">Scheduled</dt><dd>{{ form.scheduled_date }} {{ form.scheduled_time }}</dd></div>
+                            <div><dt class="text-ink-400">Scheduled</dt><dd>{{ form.scheduled_date }} {{ form.scheduled_time }}</dd></div>
                             <div v-if="form.delivery_address" class="sm:col-span-2">
-                                <dt class="text-slate-500">Address</dt><dd>{{ form.delivery_address }}</dd>
+                                <dt class="text-ink-400">Address</dt><dd>{{ form.delivery_address }}</dd>
                             </div>
                         </dl>
                     </section>
 
                     <section class="card p-5">
-                        <h2 class="font-heading font-bold text-ink-700">Payment</h2>
-                        <p class="mt-2 text-sm text-slate-600">
+                        <h2 class="font-heading font-semibold text-ink-900">Payment</h2>
+                        <p class="mt-2 text-sm text-ink-500">
                             Payment is settled at the branch on collection or delivery. We will hold your items
                             against this order.
                         </p>
@@ -307,19 +307,19 @@ async function placeOrder() {
                 </div>
 
                 <aside class="card h-fit p-5">
-                    <h2 class="font-heading font-bold text-ink-700">Order summary</h2>
+                    <h2 class="font-heading font-semibold text-ink-900">Order summary</h2>
                     <ul class="mt-3 space-y-2 text-sm">
                         <li v-for="item in cart.items" :key="item.id" class="flex justify-between gap-3">
-                            <span class="text-slate-600">{{ item.quantity }} &times; {{ item.product.name }}</span>
+                            <span class="text-ink-500">{{ item.quantity }} &times; {{ item.product.name }}</span>
                             <span>{{ formatMoney(item.line_total) }}</span>
                         </li>
                     </ul>
-                    <div class="mt-3 space-y-1 border-t border-slate-200 pt-3 text-sm">
-                        <div class="flex justify-between"><span class="text-slate-500">Subtotal</span><span>{{ formatMoney(cart.totals.subtotal) }}</span></div>
+                    <div class="mt-3 space-y-1 border-t border-ink-200 pt-3 text-sm">
+                        <div class="flex justify-between"><span class="text-ink-400">Subtotal</span><span>{{ formatMoney(cart.totals.subtotal) }}</span></div>
                         <div v-if="Number(cart.totals.discount_total) > 0" class="flex justify-between text-emerald-600">
                             <span>Discount</span><span>&minus;{{ formatMoney(cart.totals.discount_total) }}</span>
                         </div>
-                        <div class="flex justify-between font-heading text-lg font-bold text-ink-700">
+                        <div class="flex justify-between font-heading text-lg font-semibold text-ink-900">
                             <span>Total</span><span>{{ formatMoney(cart.totals.grand_total) }}</span>
                         </div>
                     </div>

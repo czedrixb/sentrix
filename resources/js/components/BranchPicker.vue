@@ -27,7 +27,7 @@ const value = computed({
         <select
             v-model="value"
             :disabled="lockedBranch !== null"
-            class="rounded border border-slate-300 px-2 py-1.5 text-sm disabled:bg-slate-100 disabled:text-slate-500"
+            class="rounded border border-ink-200 px-2 py-1.5 text-sm disabled:bg-ink-100 disabled:text-ink-400"
             :title="lockedBranch ? 'Your cart is tied to this branch' : 'Choose a branch'"
         >
             <option v-for="branch in reference.pickupBranches" :key="branch.id" :value="branch.slug">

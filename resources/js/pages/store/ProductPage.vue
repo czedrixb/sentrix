@@ -88,24 +88,24 @@ watch(() => route.params.slug, load, { immediate: true });
 <template>
     <div class="mx-auto max-w-7xl px-4 py-10">
         <div v-if="loading" class="grid gap-10 lg:grid-cols-2">
-            <div class="aspect-square animate-pulse rounded-lg bg-slate-100" />
+            <div class="aspect-square animate-pulse rounded-2xl bg-ink-100" />
             <div class="space-y-4">
-                <div class="h-8 w-2/3 animate-pulse rounded bg-slate-100" />
-                <div class="h-6 w-1/3 animate-pulse rounded bg-slate-100" />
-                <div class="h-32 animate-pulse rounded bg-slate-100" />
+                <div class="h-8 w-2/3 animate-pulse rounded bg-ink-100" />
+                <div class="h-6 w-1/3 animate-pulse rounded bg-ink-100" />
+                <div class="h-32 animate-pulse rounded bg-ink-100" />
             </div>
         </div>
 
         <div v-else-if="product" class="grid gap-10 lg:grid-cols-2">
             <section>
-                <div class="aspect-square overflow-hidden rounded-lg bg-slate-100">
+                <div class="aspect-square overflow-hidden rounded-2xl bg-ink-100">
                     <img
                         v-if="product.images?.length"
                         :src="product.images[activeImage].url"
                         :alt="product.images[activeImage].alt_text ?? product.name"
                         class="size-full object-cover"
                     >
-                    <div v-else class="grid size-full place-items-center text-slate-400">No image</div>
+                    <div v-else class="grid size-full place-items-center text-ink-400">No image</div>
                 </div>
 
                 <div v-if="product.images?.length > 1" class="mt-3 flex gap-2 overflow-x-auto">
@@ -114,7 +114,7 @@ watch(() => route.params.slug, load, { immediate: true });
                         :key="image.id"
                         type="button"
                         class="size-20 shrink-0 overflow-hidden rounded border-2"
-                        :class="index === activeImage ? 'border-brand-500' : 'border-transparent'"
+                        :class="index === activeImage ? 'border-brand-400' : 'border-transparent'"
                         @click="activeImage = index"
                     >
                         <img :src="image.url" :alt="image.alt_text ?? ''" class="size-full object-cover">
@@ -123,13 +123,13 @@ watch(() => route.params.slug, load, { immediate: true });
             </section>
 
             <section>
-                <p v-if="product.brand" class="text-sm font-semibold uppercase tracking-wide text-slate-400">
+                <p v-if="product.brand" class="text-sm font-semibold uppercase tracking-wide text-ink-400">
                     {{ product.brand.name }}
                 </p>
-                <h1 class="mt-1 font-heading text-3xl font-bold text-ink-700">{{ product.name }}</h1>
-                <p class="mt-3 font-display text-4xl text-brand-500">{{ formatMoney(product.price) }}</p>
+                <h1 class="mt-1 font-heading text-3xl font-semibold text-ink-900">{{ product.name }}</h1>
+                <p class="mt-3 font-display text-4xl text-brand-600">{{ formatMoney(product.price) }}</p>
 
-                <dl class="mt-4 space-y-1 text-sm text-slate-600">
+                <dl class="mt-4 space-y-1 text-sm text-ink-500">
                     <div class="flex gap-2"><dt class="font-semibold">SKU</dt><dd>{{ product.sku }}</dd></div>
                     <div v-if="product.category" class="flex gap-2">
                         <dt class="font-semibold">Category</dt><dd>{{ product.category.name }}</dd>
@@ -137,8 +137,8 @@ watch(() => route.params.slug, load, { immediate: true });
                 </dl>
 
                 <div v-if="product.bundle_items?.length" class="card mt-5 p-4">
-                    <p class="font-heading text-sm font-bold text-ink-700">This bundle includes</p>
-                    <ul class="mt-2 space-y-1 text-sm text-slate-600">
+                    <p class="font-heading text-sm font-semibold text-ink-900">This bundle includes</p>
+                    <ul class="mt-2 space-y-1 text-sm text-ink-500">
                         <li v-for="item in product.bundle_items" :key="item.id">
                             {{ item.quantity }} &times; {{ item.label }}
                         </li>
@@ -146,9 +146,9 @@ watch(() => route.params.slug, load, { immediate: true });
                 </div>
 
                 <!-- Stock is per branch, always. -->
-                <div class="mt-6 rounded-lg border border-slate-200 p-4">
-                    <p class="text-sm text-slate-500">
-                        Availability at <strong class="text-ink-700">{{ activeBranch?.name ?? 'no branch selected' }}</strong>
+                <div class="mt-6 rounded-2xl border border-ink-200 p-4">
+                    <p class="text-sm text-ink-400">
+                        Availability at <strong class="text-ink-900">{{ activeBranch?.name ?? 'no branch selected' }}</strong>
                     </p>
 
                     <p v-if="remaining > 0" class="mt-1 font-heading font-semibold text-emerald-600">
@@ -158,7 +158,7 @@ watch(() => route.params.slug, load, { immediate: true });
                         Out of stock at this branch
                     </p>
 
-                    <p v-if="!cart.isEmpty" class="mt-2 text-xs text-slate-500">
+                    <p v-if="!cart.isEmpty" class="mt-2 text-xs text-ink-400">
                         Your cart is with {{ cart.branch?.name }}, so items must come from that branch.
                     </p>
 
@@ -171,7 +171,7 @@ watch(() => route.params.slug, load, { immediate: true });
 
                     <p v-if="error" class="field-error">{{ error }}</p>
 
-                    <p v-if="product.requires_delivery" class="mt-3 text-xs text-slate-500">
+                    <p v-if="product.requires_delivery" class="mt-3 text-xs text-ink-400">
                         This item is bulky, so delivery can be arranged at checkout.
                     </p>
                 </div>
@@ -181,7 +181,7 @@ watch(() => route.params.slug, load, { immediate: true });
         </div>
 
         <section v-if="related.length" class="mt-16">
-            <h2 class="mb-5 font-heading text-2xl font-bold text-ink-700">You might also like</h2>
+            <h2 class="mb-5 font-heading text-2xl font-semibold text-ink-900">You might also like</h2>
             <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
                 <ProductCard v-for="item in related" :key="item.id" :product="item" />
             </div>
