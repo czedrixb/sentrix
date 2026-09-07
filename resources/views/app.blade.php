@@ -6,9 +6,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name') }}</title>
-    <meta name="description" content="Equipment, consumables and supplies, stocked across our branches.">
+    <meta name="description" content="CCTV, alarms and access control, stocked and installed across our branches.">
 
     <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=inter:400,500,600|instrument-sans:400,500,600" rel="stylesheet">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>

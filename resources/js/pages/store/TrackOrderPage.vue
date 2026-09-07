@@ -25,8 +25,8 @@ function submit() {
 
 <template>
     <div class="mx-auto max-w-md px-4 py-16">
-        <h1 class="font-display text-4xl text-ink-700">Track an order</h1>
-        <p class="mt-1 text-sm text-slate-500">No account needed.</p>
+        <h1 class="font-display text-4xl text-ink-900">Track an order</h1>
+        <p class="mt-1 text-sm text-ink-400">No account needed.</p>
 
         <form class="card mt-8 space-y-4 p-6" @submit.prevent="submit">
             <div>

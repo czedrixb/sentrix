@@ -36,7 +36,7 @@ function set(value) {
 </script>
 
 <template>
-    <div class="inline-flex items-stretch rounded border border-slate-300">
+    <div class="inline-flex items-stretch rounded border border-ink-200">
         <button
             type="button"
             class="px-3 text-lg leading-none text-ink-700 disabled:opacity-40"
@@ -52,7 +52,7 @@ function set(value) {
             :min="min"
             :max="max"
             :disabled="disabled"
-            class="w-14 border-x border-slate-300 py-2 text-center text-sm focus:outline-none"
+            class="w-14 border-x border-ink-200 py-2 text-center text-sm focus:outline-none"
             @change="set($event.target.value)"
         >
 

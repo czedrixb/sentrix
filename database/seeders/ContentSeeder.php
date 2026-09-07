@@ -29,26 +29,26 @@ class ContentSeeder extends Seeder
      * @var list<array{headline: string, link_url: string}>
      */
     private const BANNERS = [
-        ['headline' => 'Ink tank printers from ₱6,450 — stocked at every branch', 'link_url' => '/shop?category=printers'],
-        ['headline' => 'Genuine ink and toner, matched to the machine you own', 'link_url' => '/shop?category=ink-and-toner'],
-        ['headline' => 'Duplicators for examination season — delivered and installed', 'link_url' => '/products/riso-rz-220-a4-digital-stencil-duplicator'],
+        ['headline' => 'IP cameras from ₱3,150 — stocked at every branch', 'link_url' => '/shop?category=ip-cameras'],
+        ['headline' => 'Recorders and surveillance drives, matched to the cameras you own', 'link_url' => '/shop?category=recorders-and-storage'],
+        ['headline' => 'Four cameras, a recorder and a drive — one bundle, fitted in a morning', 'link_url' => '/products/4-camera-shop-bundle'],
     ];
 
     /**
-     * Showroom and service photographs.
+     * Showroom and installation photographs.
      *
      * @var list<string>
      */
     private const GALLERY_CAPTIONS = [
         'The Davao City showroom on McArthur Highway',
-        'Ink tank demonstration units, Davao City branch',
-        'Toner and consumables aisle, Cebu City',
-        'Service bay — a Kyocera TASKalfa in for its annual clean',
-        'Riso duplicator handover to a school division office',
+        'Live camera demonstration wall, Davao City branch',
+        'Recorders and surveillance drives, Cebu City',
+        'Bench testing a PTZ dome before it goes out on site',
+        'An eight-camera handover to a division office',
         'Delivery loading at the Central Warehouse',
-        'Copier installation and staff training in Iloilo City',
+        'Commissioning a sixteen-channel system in Iloilo City',
         'The counter at General Santos City on a Saturday morning',
-        'Technicians at the annual service refresher, Davao City',
+        'Technicians at the annual installation refresher, Davao City',
     ];
 
     /**
@@ -59,142 +59,142 @@ class ContentSeeder extends Seeder
      */
     private const POSTS = [
         [
-            'title' => 'Ink tank or laser? How to choose without overspending',
-            'author' => 'Kompra Sales Team',
+            'title' => 'IP or analogue? How to choose without overspending',
+            'author' => 'Sentrix Sales Team',
             'days_ago' => 4,
-            'excerpt' => 'The honest answer depends on two numbers: how many pages you print a month, and whether any of them need to survive getting wet.',
+            'excerpt' => 'The honest answer depends on one thing more than any other: whether there is already cable in the walls.',
             'paragraphs' => [
-                'It is the question we are asked most across the counter, and the answer is not the one most price lists imply. An ink tank printer costs less to buy and far less to run than a cartridge machine, but a laser still beats both on speed and on the durability of the page.',
-                'Under about 500 pages a month, buy the tank. An EcoTank L3250 or a PIXMA G3020 will handle school work, letters and the occasional photo, and a set of bottles lasts most households the better part of a year. Colour costs almost nothing, which matters if anyone in the house is printing projects.',
-                'Above roughly a thousand pages a month, or where the output is contracts, receipts and records, buy the laser. Toner does not run when a page gets damp, which is why clinics, law offices and records rooms have never moved away from it. A Brother HL-L2350DW or a Canon MF3010 will clear a queue several times faster than any tank machine.',
-                'The case that catches people out is the middle: a small office printing 600 to 800 pages a month, mostly text. There a duplex laser usually wins over the life of the machine, because it halves paper spend on anything longer than a page. Bring your monthly volume to any branch and we will work the cost per page out with you rather than guess at it.',
+                'It is the question we are asked most across the counter, and the answer is not the one most price lists imply. An IP system gives better pictures, better search and a single cable per camera. An analogue system on cable that is already in the building costs a fraction of the labour, and on a finished building the labour is most of the quotation.',
+                'If the building is new, or is being renovated with the walls open, run Cat6 and buy IP. There is no argument. One cable carries the picture and the power, the recorder does the person and vehicle filtering, and adding a camera later is a switch port rather than a second run.',
+                'If the building already has coaxial cable to every corner, price the analogue upgrade before anything else. HD-TVI carries 5MP down the same RG59 that used to carry a fuzzy 700-line picture, so replacing eight cameras and one recorder can more than double the detail without a single new cable being pulled.',
+                'The case that catches people out is the middle: an older building with coax in some places and not others. A penta-brid recorder takes both, so the existing runs stay and only the new positions get network cable. Bring a floor plan to any branch and we will mark it up with you rather than guess at it.',
             ],
         ],
         [
-            'title' => 'Why we keep telling you not to use unbranded refill ink',
-            'author' => 'Service Department',
+            'title' => 'Why we keep telling you not to buy copper-clad aluminium cable',
+            'author' => 'Installation Department',
             'days_ago' => 12,
-            'excerpt' => 'Nearly every printhead we replace comes off a machine that was refilled with ink of unknown origin. Here is what actually happens inside.',
+            'excerpt' => 'Nearly every camera that reboots at night is on cable that was bought at half price. Here is what actually happens in the wire.',
             'paragraphs' => [
-                'A printhead fires ink through nozzles measured in tens of microns. Genuine ink is formulated so that what dries in those nozzles between jobs re-dissolves the next time the printer runs a cleaning cycle. Ink that was not formulated for the head does not always re-dissolve.',
-                'The failure is gradual and it looks like something else. First a colour bands. Then cleaning cycles fix it for a day. Then they stop fixing it, and by that point the blockage has hardened past anything a cleaning cycle can shift. The head is replaced, which on most tank printers costs more than a year of genuine bottles.',
-                'We are not arguing that genuine ink is cheap. We are pointing out that a 65ml bottle of Epson 003 covers about 4,500 pages, which works out to a few centavos a page, and that the printhead it protects costs several thousand pesos to replace. The arithmetic is not close.',
-                'If a machine is already refusing to clear its nozzles, bring it in before buying anything. Some blockages soak out. The ones that do not are quoted before any work starts.',
+                'Power over Ethernet sends current down the same pairs that carry the data. Copper carries that current with very little loss. Copper-clad aluminium — an aluminium core with a thin copper skin — has roughly 60 per cent more resistance, and resistance turns into heat and lost voltage over distance.',
+                'The failure is gradual and it looks like something else. The camera works perfectly during the day. At dusk the infrared illuminators switch on, the camera draws its full power, the voltage at the end of a 70-metre run sags below what it needs, and it reboots. Then it comes back, and reboots again. In the morning everything is fine and nothing shows on the recorder except gaps.',
+                'We are not arguing that solid copper is cheap. We are pointing out that the difference on a 305-metre box is about 2,000 pesos, and that a technician spending a day chasing an intermittent fault costs more than that before any cable is replaced. Half the service calls we take on other people\'s installations end at the cable.',
+                'If a system is already dropping cameras at night, bring the make and the run lengths to any branch before buying anything. Some runs can be saved with a mid-span injector. The ones that cannot are quoted before any work starts.',
             ],
         ],
         [
-            'title' => 'Getting a duplicator ready for examination season',
-            'author' => 'Service Department',
+            'title' => 'How much storage do you actually need?',
+            'author' => 'Installation Department',
             'days_ago' => 21,
-            'excerpt' => 'A duplicator that sat idle since the last examination period will not start cleanly. Four things to check in the week before you need it.',
+            'excerpt' => 'Most systems are fitted with a 2TB drive because that is what the box came with. Four things to work out before you choose.',
             'paragraphs' => [
-                'Schools run their duplicators hard for two weeks and then leave them alone for months. That idle period, not the workload, is what causes most of the call-outs we get at the start of an examination period.',
-                'Check the ink first. Duplicator ink thickens in a cartridge left partly used, and a machine fed thickened ink prints faint and then streaks. If the cartridge has been open since the last term, plan on a fresh one.',
-                'Check the master roll next. A partly used roll stored in a hot room can deform enough that the master feeds crookedly, which shows up as a skewed image on every copy. Rolls should be kept sealed and out of direct sun.',
-                'Then run fifty test copies of a page with solid black on it, before the day you need the machine. That clears the drum and shows any banding while there is still time to do something about it. Finally, check the paper: duplicator paper wants to be dry, and a ream that has been in a humid store room will jam.',
-                'Any branch will run a pre-season service on a Riso or Duplo machine. Book it two weeks out; the week itself is always fully booked.',
+                'Retention is the first question to answer and the last one anybody asks. Incidents are usually reported days after they happen — a missing delivery, a discrepancy found at stocktake, a complaint that took a week to escalate. A system that holds nine days of footage is not much use for any of them.',
+                'Start with the camera count and the resolution. Eight 4MP cameras recording continuously produce roughly a terabyte a week. Sixteen produce two. That is the number to work from, and it is why a 2TB drive on an eight-camera system holds about a fortnight and no more.',
+                'Then decide whether the cameras need to record continuously at all. Motion recording with a five-second pre-buffer can cut storage by half or more on a site that is empty at night, at the cost of the occasional missed event where the motion detection was set too tight. On a shop front we record continuously; on a stock room we usually do not.',
+                'Finally, check whether anything obliges you to keep a specific period. Barangay and LGU permits increasingly specify thirty or sixty days, and some insurers do too. If a number is written down anywhere, fit the drive that meets it. And use a surveillance-rated drive: a desktop drive in a recorder is a failure with a date on it.',
             ],
         ],
         [
-            'title' => 'Tagbilaran branch now stocks the full consumables range',
-            'author' => 'Kompra Management',
+            'title' => 'Tagbilaran branch now stocks the full recorder and drive range',
+            'author' => 'Sentrix Management',
             'days_ago' => 33,
-            'excerpt' => 'Bohol customers no longer wait on a Cebu transfer for toner and ink — the CPG Avenue branch now holds the complete line.',
+            'excerpt' => 'Bohol customers no longer wait on a Cebu transfer for a recorder or a drive — the CPG Avenue branch now holds the complete line.',
             'paragraphs' => [
-                'Until this month, the Tagbilaran branch carried machines and the fastest-moving ink, and anything else came across on the Cebu transfer. That added two to four days to an order, which is a long time to have a copier standing idle.',
-                'The branch now holds the full consumables range: every ink bottle and toner cartridge in the catalogue, master rolls and duplicator ink, plus the common spare parts — fusers, pickup rollers and waste containers.',
+                'Until this month, the Tagbilaran branch carried cameras and the fastest-moving cable, and anything else came across on the Cebu transfer. That added two to four days to an order, which is a long time to have a site recording nothing.',
+                'The branch now holds the full range: every recorder in the catalogue, all five surveillance drives, the alarm and access control lines, and the cable, connectors and power supplies that go with them.',
                 'The stock figures shown on this site are per branch. Selecting Tagbilaran City before you browse will show what is actually on that shelf rather than a national total, so a reserved item is genuinely there when you arrive.',
                 'The branch is on CPG Avenue in Poblacion II and can be reached on (038) 411 3094.',
             ],
         ],
         [
-            'title' => 'What a printer service actually includes',
-            'author' => 'Service Department',
+            'title' => 'What a system health check actually includes',
+            'author' => 'Installation Department',
             'days_ago' => 45,
-            'excerpt' => 'Not a spray of contact cleaner and a wipe. Here is the checklist our technicians work through, and what it costs.',
+            'excerpt' => 'Not a look at the monitor and a wipe of the lenses. Here is the checklist our technicians work through, and what it costs.',
             'paragraphs' => [
-                'A service starts with a test print, because the fault a customer describes and the fault the machine has are not always the same thing. That page tells the technician whether the problem is in the head, the drum, the fuser or the paper path.',
-                'The paper path is cleaned first: pickup rollers, separation pad and transport rollers, all of which glaze over with paper dust and stop gripping. This alone resolves most misfeed complaints. Rollers past cleaning are quoted for replacement before anything is fitted.',
-                'On lasers the drum and transfer assembly are inspected for wear and the fuser is checked for the scoring that causes repeat marks down a page. On tank machines the head goes through a controlled clean, and on a blocked head a soak, which takes a day.',
-                'Then the scanner glass and platen are cleaned, the firmware checked, and a second test print run and kept on file. Standard service is quoted at the counter, parts separate and always approved before fitting. Machines bought from us are serviced at a lower rate for the life of the machine.',
+                'A health check starts at the recorder, not the cameras, because the fault a customer describes and the fault the system has are not always the same thing. The log tells the technician whether channels have been dropping, whether the disk has been reporting errors, and how far back the footage actually goes.',
+                'The drive is checked first: SMART attributes, reallocated sectors and the real retention period against what the customer believes it is. A drive that has been writing continuously for four years is near the end of its life whether or not it has failed yet, and it is cheaper to replace on a Tuesday than on the morning after an incident.',
+                'Then every channel is reviewed at night as well as during the day, because a camera that looks fine at noon can be washed out by a security light or blinded by a spider web after dark. Lenses and domes are cleaned, focus is checked, and infrared cut filters are tested for the click that says they are still switching.',
+                'Finally the terminations, the power supply voltages under load, and the surge protection are checked, and the remote app access is tested from outside the network — which is the part customers most often find has quietly stopped working. Standard health checks are quoted at the counter, parts separate and always approved before fitting. Systems bought from us are checked at a lower rate for the life of the system.',
             ],
         ],
         [
             'title' => 'Reserving stock online, and what happens when you arrive',
-            'author' => 'Kompra Sales Team',
+            'author' => 'Sentrix Sales Team',
             'days_ago' => 58,
-            'excerpt' => 'Orders placed here are held at the branch you chose and paid for at the counter. No card details are taken online.',
+            'excerpt' => 'The stock figure on this site is per branch and it is real. Here is what it commits us to.',
             'paragraphs' => [
-                'Every order on this site is a reservation against a specific branch. Choose the branch first and the catalogue shows that branch\'s stock; the quantity you see is the quantity on the shelf.',
-                'At checkout you pick a pick-up date and time. The order number is issued immediately and the stock is set aside under it. Nothing is charged online — payment is made at the counter when you collect, in cash or by the terminal.',
-                'Bring the order number. Staff pull the reservation by that number, and it is faster than describing what you ordered. If somebody else is collecting on your behalf, they need the number and nothing more.',
-                'Bulky items — copiers, duplicators, printer stands — are marked as delivery-only, because they need two people and a vehicle. Those are scheduled by the branch after the order is placed.',
+                'The quantity shown against a product is the quantity at the branch you have selected, not a national total. If Cebu shows three recorders and Davao shows none, that is exactly what it means, and switching branches at the top of the page changes every figure on the screen.',
+                'Placing an order reserves those items at that branch. The stock is decremented when the order is placed, not when you collect, so nobody can buy the last drive out from under a reservation that is already made.',
+                'Orders are prepared for collection at the counter. Bring the order number — it starts with SNX — and the name the order was placed under. Payment is at the branch, so nothing has to be settled online before you have seen what you are buying.',
+                'If something is wrong when you arrive, say so at the counter rather than taking it away. Anything unopened goes back on the shelf without argument, and a camera that has been mounted and drilled cannot.',
             ],
         ],
         [
-            'title' => 'Five signs a printer needs a new pickup roller, not a new printer',
-            'author' => 'Service Department',
-            'days_ago' => 72,
-            'excerpt' => 'The cheapest repair in the catalogue fixes the complaint that most often gets a working machine replaced.',
+            'title' => 'Five signs a camera needs replacing, not cleaning',
+            'author' => 'Installation Department',
+            'days_ago' => 71,
+            'excerpt' => 'A cloudy picture is sometimes dirt. These five faults are the camera itself, and no amount of wiping will fix them.',
             'paragraphs' => [
-                'A printer that pulls two sheets at once, or none at all, is almost never worn out. It has a glazed pickup roller, and the part costs a few hundred pesos.',
-                'The signs are consistent: paper feeds crookedly; two sheets go through together; the tray reports empty when it is not; a page stalls halfway and reports a jam that is not there; or feeding works from the rear tray but not the main one.',
-                'Any of those, on a machine that otherwise prints cleanly, points at the rollers rather than the engine. The rubber hardens and polishes with age until it slides across the top sheet instead of gripping it.',
-                'Replacement takes a few minutes on most desktop lasers and the universal roller set fits the common HP, Canon and Samsung trays. Bring the machine to any branch, or buy the set and fit it yourself — it is the one repair we are happy to talk a customer through over the phone.',
+                'A milky, low-contrast picture that does not improve after the dome is cleaned is usually moisture that has been inside the housing long enough to fog the lens from within. Once the seal has failed the camera will keep taking water in, and it is not economic to reseal one in the field.',
+                'A picture that stays grey all day means the infrared cut filter has stuck. You can sometimes hear it fail to click at dusk. The camera still records, but every colour in the footage is gone, and colour is most of what makes a description usable.',
+                'Purple or washed-out infrared at night, with the centre of the frame blown out, means the illuminators have aged unevenly. Replacing them is not a field repair on a sealed housing.',
+                'Bands or a rolling flicker that follow the mains frequency point at the power supply rather than the camera — check that before condemning anything. But a fixed pattern of dead pixels, or a frame that has visibly lost focus with no zoom to adjust, is the sensor or the lens assembly, and both mean a new camera.',
             ],
         ],
         [
-            'title' => 'Bulk pricing on paper and toner for schools and LGUs',
-            'author' => 'Kompra Sales Team',
-            'days_ago' => 88,
-            'excerpt' => 'Ordering by the box rather than the ream, and what we can quote for an institutional purchase order.',
+            'title' => 'Project pricing for schools, LGUs and cooperatives',
+            'author' => 'Sentrix Sales Team',
+            'days_ago' => 84,
+            'excerpt' => 'Institutional pricing, purchase orders and staged installation across multiple sites.',
             'paragraphs' => [
-                'Bond paper is priced per ream at the counter, but almost nobody buying for a school or a municipal office wants ten separate reams. A box of ten carries a lower unit price, and the discount grows past five boxes.',
-                'The same applies to toner. Copier toners such as the Konica Minolta TN-116 and the Kyocera TK-1175 are quoted by the box, which is how a division office covers an examination period without a mid-run reorder.',
-                'We supply against institutional purchase orders and can provide the quotations, delivery receipts and official receipts that a procurement file needs. Terms are arranged per account rather than advertised.',
-                'Send the item list and quantities to the branch nearest you, or to sales@kompra.ph, and a written quotation follows within a working day.',
+                'Schools, local government units and cooperatives buy differently from a shop owner: the requirement is written down, the payment runs on a purchase order, and the work usually has to be staged across a term or a budget year rather than done in one week.',
+                'We quote those jobs per site with a single price list across all of them, so a second campus fitted six months later does not cost more than the first. The quotation shows equipment, cable and labour separately, because most procurement offices need to see them that way.',
+                'Purchase orders are accepted from institutions with a supplier accreditation on file. Delivery, installation and commissioning are quoted as line items rather than bundled, and staged installations are invoiced per site as each one is signed off.',
+                'Send the site list, the camera positions if you have them, and any retention period written into your permit to the branch nearest you, or to sales@sentrix.ph, and a written quotation follows within two working days.',
             ],
         ],
     ];
 
     /**
-     * Open vacancies, keyed to the branch slug they are posted at.
+     * Open vacancies. `branch` is a branch slug, or null for head office.
      *
      * @var list<array{title: string, branch: ?string, vacancies: int, employment_type: string, summary: string, responsibilities: list<string>, requirements: list<string>}>
      */
     private const CAREERS = [
         [
             'title' => 'Sales Associate', 'branch' => 'davao-city', 'vacancies' => 2, 'employment_type' => 'Full-time',
-            'summary' => 'Serve walk-in customers on the showroom floor, quote machines and consumables, and follow through on institutional accounts.',
+            'summary' => 'Serve walk-in customers on the showroom floor, quote systems and equipment, and follow through on institutional accounts.',
             'responsibilities' => [
-                'Assist walk-in customers and match them to the right machine for their print volume',
+                'Assist walk-in customers and match them to the right system for their site',
                 'Prepare quotations for schools, LGUs and corporate accounts',
-                'Maintain product knowledge across the printer, copier and consumables range',
+                'Maintain product knowledge across the camera, recorder, alarm and access control range',
                 'Coordinate with the warehouse on stock availability and transfers',
                 'Follow up on open quotations and purchase orders',
             ],
             'requirements' => [
                 'Graduate of any four-year course, or equivalent retail sales experience',
-                'At least one year in retail or technical sales, preferably office equipment',
+                'At least one year in retail or technical sales, preferably security or IT equipment',
                 'Comfortable explaining technical differences in plain language',
                 'Willing to work weekends on a rotating schedule',
             ],
         ],
         [
-            'title' => 'Service Technician', 'branch' => 'cebu-city', 'vacancies' => 2, 'employment_type' => 'Full-time',
-            'summary' => 'Diagnose and repair printers, copiers and duplicators in the workshop and on site across Cebu and the surrounding provinces.',
+            'title' => 'CCTV Installation Technician', 'branch' => 'cebu-city', 'vacancies' => 2, 'employment_type' => 'Full-time',
+            'summary' => 'Install, commission and repair camera, alarm and access control systems on site across Cebu and the surrounding provinces.',
             'responsibilities' => [
-                'Diagnose and repair inkjet, laser and duplicator equipment',
-                'Carry out preventive maintenance on customer machines under service contract',
-                'Perform on-site installation and operator training',
-                'Keep accurate service records and parts usage per job',
-                'Advise the branch on parts that should be held in stock',
+                'Install and terminate coaxial and network cable, and mount cameras at height',
+                'Commission recorders, configure recording schedules and set up remote access',
+                'Diagnose and repair faults on existing camera, alarm and access control systems',
+                'Carry out scheduled health checks on systems under service contract',
+                'Keep accurate job records, as-built notes and parts usage per site',
             ],
             'requirements' => [
                 'Graduate of Electronics Technology, Computer Technology or a related course',
-                'TESDA NC II in Consumer Electronics Servicing an advantage',
-                'At least one year of hands-on repair experience with office equipment',
-                'Valid driver\'s licence preferred; on-site work is part of the role',
+                'TESDA NC II in Consumer Electronics Servicing or Computer Systems Servicing an advantage',
+                'At least one year of hands-on installation experience with CCTV or structured cabling',
+                'Comfortable working at height on a ladder or scaffold',
+                'Valid driver\'s licence preferred; on-site work is the whole of the role',
             ],
         ],
         [
@@ -203,7 +203,7 @@ class ContentSeeder extends Seeder
             'responsibilities' => [
                 'Own the branch sales target and report performance monthly',
                 'Manage stock levels, reordering and transfers with the Central Warehouse',
-                'Supervise sales, service and administrative staff at the branch',
+                'Supervise sales, installation and administrative staff at the branch',
                 'Handle escalated customer concerns and institutional accounts',
                 'Ensure branch compliance with company policy and local permits',
             ],
@@ -239,24 +239,24 @@ class ContentSeeder extends Seeder
                 'Maintain accounts payable and supplier payment schedules',
                 'Prepare BIR-compliant invoices and official receipts',
                 'Assist with monthly closing and management reporting',
-                'Support internal and external audit requirements',
+                'Support the annual audit with schedules and supporting documents',
             ],
             'requirements' => [
-                'Graduate of Accountancy, Accounting Technology or Financial Management',
-                'At least one year of general accounting experience',
-                'Working knowledge of BIR reporting requirements',
-                'Proficient in spreadsheets and accounting software',
+                'Graduate of Accountancy, Financial Management or a related course',
+                'At least one year of accounting experience, retail or distribution preferred',
+                'Working knowledge of BIR requirements for a retail business',
+                'Proficient with spreadsheets and accounting software',
             ],
         ],
         [
-            'title' => 'Delivery Driver', 'branch' => 'quezon-city', 'vacancies' => 1, 'employment_type' => 'Full-time',
-            'summary' => 'Deliver and help install equipment across Metro Manila and nearby provinces.',
+            'title' => 'Installation and Delivery Driver', 'branch' => 'quezon-city', 'vacancies' => 1, 'employment_type' => 'Full-time',
+            'summary' => 'Deliver equipment across Metro Manila and assist the installation team on site.',
             'responsibilities' => [
-                'Deliver machines and consumables to customer sites on schedule',
-                'Assist technicians with unloading and positioning of copiers and duplicators',
-                'Secure signed delivery receipts and return them to the branch daily',
-                'Carry out daily vehicle checks and keep the vehicle roadworthy',
-                'Report delivery issues and customer concerns to the branch promptly',
+                'Deliver customer orders and branch transfers safely and on schedule',
+                'Assist the installation team with equipment handling and site setup',
+                'Maintain the delivery vehicle and keep its records current',
+                'Secure customer acknowledgement on every delivery',
+                'Plan routes around the Metro Manila truck ban',
             ],
             'requirements' => [
                 'Valid professional driver\'s licence, restriction codes 1, 2 and 3',
@@ -340,7 +340,7 @@ class ContentSeeder extends Seeder
                     'vacancies' => $career['vacancies'],
                     'employment_type' => $career['employment_type'],
                     'description' => $this->vacancyDescription($career),
-                    'apply_email' => 'careers@kompra.ph',
+                    'apply_email' => 'careers@sentrix.ph',
                     'is_open' => true,
                 ]
             );

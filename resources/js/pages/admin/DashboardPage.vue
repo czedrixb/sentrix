@@ -89,12 +89,12 @@ onMounted(async () => {
 <template>
     <div>
         <header class="mb-6">
-            <h1 class="font-heading text-2xl font-bold text-ink-700">Dashboard</h1>
-            <p v-if="data" class="text-sm text-slate-500">{{ data.scope }}</p>
+            <h1 class="font-heading text-2xl font-semibold text-ink-900">Dashboard</h1>
+            <p v-if="data" class="text-sm text-ink-400">{{ data.scope }}</p>
         </header>
 
         <div v-if="loading" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <div v-for="n in 8" :key="n" class="h-28 animate-pulse rounded-lg bg-white" />
+            <div v-for="n in 8" :key="n" class="h-28 animate-pulse rounded-2xl bg-white" />
         </div>
 
         <template v-else-if="data">
@@ -104,23 +104,23 @@ onMounted(async () => {
                     :key="key"
                     class="card p-5"
                 >
-                    <p class="text-xs font-semibold uppercase tracking-wide text-slate-400">{{ bucket.label }}</p>
-                    <p class="mt-1 font-display text-3xl text-ink-700">{{ bucket.total }}</p>
+                    <p class="text-xs font-semibold uppercase tracking-wide text-ink-400">{{ bucket.label }}</p>
+                    <p class="mt-1 font-display text-3xl text-ink-900">{{ bucket.total }}</p>
                 </article>
             </section>
 
             <section class="mt-4 grid gap-4 sm:grid-cols-3">
                 <article class="card p-5">
-                    <p class="text-xs font-semibold uppercase tracking-wide text-slate-400">Unpaid orders</p>
-                    <p class="mt-1 font-display text-3xl text-brand-500">{{ data.orders_unpaid }}</p>
+                    <p class="text-xs font-semibold uppercase tracking-wide text-ink-400">Unpaid orders</p>
+                    <p class="mt-1 font-display text-3xl text-brand-600">{{ data.orders_unpaid }}</p>
                 </article>
                 <article class="card p-5">
-                    <p class="text-xs font-semibold uppercase tracking-wide text-slate-400">Revenue this month</p>
-                    <p class="mt-1 font-display text-3xl text-ink-700">{{ formatMoney(data.revenue_this_month) }}</p>
+                    <p class="text-xs font-semibold uppercase tracking-wide text-ink-400">Revenue this month</p>
+                    <p class="mt-1 font-display text-3xl text-ink-900">{{ formatMoney(data.revenue_this_month) }}</p>
                 </article>
                 <article class="card p-5">
-                    <p class="text-xs font-semibold uppercase tracking-wide text-slate-400">Enquiries waiting</p>
-                    <p class="mt-1 font-display text-3xl text-ink-700">{{ data.inquiries_unhandled }}</p>
+                    <p class="text-xs font-semibold uppercase tracking-wide text-ink-400">Enquiries waiting</p>
+                    <p class="mt-1 font-display text-3xl text-ink-900">{{ data.inquiries_unhandled }}</p>
                 </article>
             </section>
         </template>
@@ -129,31 +129,31 @@ onMounted(async () => {
         <section class="card mt-6 p-5">
             <div class="mb-5 flex flex-wrap items-start justify-between gap-3">
                 <div>
-                    <h2 class="font-heading font-bold text-ink-700">Paid revenue</h2>
-                    <p class="text-sm text-slate-500">
+                    <h2 class="font-heading font-semibold text-ink-900">Paid revenue</h2>
+                    <p class="text-sm text-ink-400">
                         <template v-if="series">
                             {{ series.label }} &middot;
-                            <strong class="text-ink-700">{{ formatMoney(series.total) }}</strong> total
+                            <strong class="text-ink-900">{{ formatMoney(series.total) }}</strong> total
                         </template>
                     </p>
                 </div>
 
-                <div class="flex rounded border border-slate-200 p-0.5" role="group" aria-label="Chart range">
+                <div class="flex rounded border border-ink-200 p-0.5" role="group" aria-label="Chart range">
                     <button
                         v-for="option in ranges"
                         :key="option.key"
                         type="button"
                         class="rounded px-3 py-1.5 text-xs font-semibold transition-colors"
                         :class="range === option.key
-                            ? 'bg-brand-500 text-white'
-                            : 'text-slate-500 hover:bg-slate-100 hover:text-ink-700'"
+                            ? 'bg-brand-600 text-white'
+                            : 'text-ink-400 hover:bg-ink-100 hover:text-ink-700'"
                         :aria-pressed="range === option.key"
                         @click="range = option.key"
                     >{{ option.label }}</button>
                 </div>
             </div>
 
-            <div v-if="seriesLoading" class="h-[200px] animate-pulse rounded bg-slate-100" />
+            <div v-if="seriesLoading" class="h-[200px] animate-pulse rounded bg-ink-100" />
             <RevenueChart v-else-if="series" :points="series.points" />
         </section>
 
@@ -161,8 +161,8 @@ onMounted(async () => {
         <section class="card mt-6 p-5">
             <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
                 <div>
-                    <h2 class="font-heading font-bold text-ink-700">Low stock</h2>
-                    <p v-if="lowStockMeta" class="text-sm text-slate-500">
+                    <h2 class="font-heading font-semibold text-ink-900">Low stock</h2>
+                    <p v-if="lowStockMeta" class="text-sm text-ink-400">
                         {{ lowStockMeta.total }} product{{ lowStockMeta.total === 1 ? '' : 's' }} at or below threshold
                     </p>
                 </div>
@@ -179,10 +179,10 @@ onMounted(async () => {
             </div>
 
             <div v-if="lowStockLoading" class="space-y-2">
-                <div v-for="n in 5" :key="n" class="h-10 animate-pulse rounded bg-slate-100" />
+                <div v-for="n in 5" :key="n" class="h-10 animate-pulse rounded bg-ink-100" />
             </div>
 
-            <p v-else-if="lowStock.length === 0" class="py-6 text-center text-sm text-slate-500">
+            <p v-else-if="lowStock.length === 0" class="py-6 text-center text-sm text-ink-400">
                 <template v-if="search">Nothing matches &ldquo;{{ search }}&rdquo;.</template>
                 <template v-else>Nothing is below its threshold.</template>
             </p>
@@ -191,7 +191,7 @@ onMounted(async () => {
                 <table class="w-full text-sm">
                     <!-- nowrap so the two numeric headings scroll rather than
                          wrap into each other on a narrow screen. -->
-                    <thead class="text-left text-xs uppercase tracking-wide text-slate-400">
+                    <thead class="text-left text-xs uppercase tracking-wide text-ink-400">
                         <tr>
                             <th class="py-2 pr-4">Product</th>
                             <th class="py-2 pr-4">Branch</th>
@@ -199,20 +199,20 @@ onMounted(async () => {
                             <th class="whitespace-nowrap py-2 text-right">Threshold</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-slate-100">
+                    <tbody class="divide-y divide-ink-100">
                         <tr v-for="row in lowStock" :key="`${row.product_id}-${row.branch_id}`">
                             <td class="py-2 pr-4">
                                 {{ row.product_name }}
-                                <span class="block text-xs text-slate-400">{{ row.sku }}</span>
+                                <span class="block text-xs text-ink-400">{{ row.sku }}</span>
                             </td>
-                            <td class="py-2 pr-4 text-slate-600">{{ row.branch_name }}</td>
+                            <td class="py-2 pr-4 text-ink-500">{{ row.branch_name }}</td>
                             <td
                                 class="py-2 pr-4 text-right font-semibold tabular-nums"
                                 :class="row.quantity === 0 ? 'text-red-600' : 'text-amber-600'"
                             >
                                 {{ row.quantity }}
                             </td>
-                            <td class="py-2 text-right tabular-nums text-slate-500">{{ row.low_stock_threshold }}</td>
+                            <td class="py-2 text-right tabular-nums text-ink-400">{{ row.low_stock_threshold }}</td>
                         </tr>
                     </tbody>
                 </table>

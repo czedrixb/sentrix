@@ -49,8 +49,8 @@ onMounted(crud.load);
     <div>
         <header class="mb-6 flex flex-wrap items-center justify-between gap-3">
             <div>
-                <h1 class="font-heading text-2xl font-bold text-ink-700">Brands</h1>
-                <p class="text-sm text-slate-500">Every brand the catalogue can be filtered by.</p>
+                <h1 class="font-heading text-2xl font-semibold text-ink-900">Brands</h1>
+                <p class="text-sm text-ink-400">Every brand the catalogue can be filtered by.</p>
             </div>
 
             <button v-if="canManage()" type="button" class="btn-primary" @click="crud.startCreate">
@@ -61,19 +61,19 @@ onMounted(crud.load);
         <p v-if="notice" class="mb-4 rounded bg-emerald-50 p-3 text-sm text-emerald-700">{{ notice }}</p>
 
         <div v-if="loading" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            <div v-for="n in 6" :key="n" class="h-24 animate-pulse rounded-lg bg-white" />
+            <div v-for="n in 6" :key="n" class="h-24 animate-pulse rounded-2xl bg-white" />
         </div>
 
         <div v-else class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             <article v-for="brand in brands" :key="brand.id" class="card flex items-center gap-4 p-4">
-                <div class="grid size-14 shrink-0 place-items-center overflow-hidden rounded bg-slate-100">
+                <div class="grid size-14 shrink-0 place-items-center overflow-hidden rounded bg-ink-100">
                     <img v-if="brand.logo_url" :src="brand.logo_url" :alt="brand.name" class="size-full object-contain">
-                    <span v-else class="font-display text-xl text-slate-400">{{ brand.name.charAt(0) }}</span>
+                    <span v-else class="font-display text-xl text-ink-400">{{ brand.name.charAt(0) }}</span>
                 </div>
 
                 <div class="min-w-0 flex-1">
-                    <p class="truncate font-semibold text-ink-700">{{ brand.name }}</p>
-                    <p class="truncate text-xs text-slate-500">/{{ brand.slug }}</p>
+                    <p class="truncate font-semibold text-ink-900">{{ brand.name }}</p>
+                    <p class="truncate text-xs text-ink-400">/{{ brand.slug }}</p>
                 </div>
 
                 <div v-if="canManage()" class="flex shrink-0 flex-col items-end">
@@ -88,12 +88,12 @@ onMounted(crud.load);
                 </div>
             </article>
 
-            <p v-if="brands.length === 0" class="col-span-full py-8 text-center text-slate-400">No brands yet.</p>
+            <p v-if="brands.length === 0" class="col-span-full py-8 text-center text-ink-400">No brands yet.</p>
         </div>
 
         <div v-if="showForm" class="fixed inset-0 z-50 grid place-items-center bg-black/40 p-4">
             <form class="card max-h-full w-full max-w-md overflow-auto p-6" @submit.prevent="submit">
-                <h2 class="font-heading text-lg font-bold text-ink-700">
+                <h2 class="font-heading text-lg font-semibold text-ink-900">
                     {{ editing ? `Edit ${editing.name}` : 'New brand' }}
                 </h2>
 

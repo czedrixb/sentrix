@@ -18,7 +18,7 @@ class OrderNumberGenerator
 
     public function generate(): string
     {
-        $prefix = config('kompra.order_number_prefix');
+        $prefix = config('sentrix.order_number_prefix');
         $datePart = now()->format('ymd');
 
         for ($attempt = 0; $attempt < self::MAX_ATTEMPTS; $attempt++) {

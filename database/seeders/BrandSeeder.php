@@ -14,8 +14,9 @@ class BrandSeeder extends Seeder
      * @var list<string>
      */
     private const BRANDS = [
-        'Brother', 'Canon', 'Duplo', 'Epson', 'Fuji', 'HP', 'Konica',
-        'Kyocera', 'OKI', 'Pantum', 'Ricoh', 'Riso', 'Samsung', 'Xerox',
+        'Axis', 'Bosch', 'Dahua', 'Ezviz', 'Hanwha Vision', 'Hikvision', 'Imou',
+        'Paradox', 'Reolink', 'Seagate', 'TP-Link VIGI', 'Uniview',
+        'Western Digital', 'ZKTeco',
     ];
 
     public function run(): void

@@ -65,8 +65,8 @@ onMounted(async () => {
     <div>
         <header class="mb-6 flex flex-wrap items-center justify-between gap-3">
             <div>
-                <h1 class="font-heading text-2xl font-bold text-ink-700">Careers</h1>
-                <p class="text-sm text-slate-500">Vacancies listed on the storefront careers page.</p>
+                <h1 class="font-heading text-2xl font-semibold text-ink-900">Careers</h1>
+                <p class="text-sm text-ink-400">Vacancies listed on the storefront careers page.</p>
             </div>
 
             <button v-if="canManage()" type="button" class="btn-primary" @click="crud.startCreate">
@@ -77,13 +77,13 @@ onMounted(async () => {
         <p v-if="notice" class="mb-4 rounded bg-emerald-50 p-3 text-sm text-emerald-700">{{ notice }}</p>
 
         <div v-if="loading" class="space-y-3">
-            <div v-for="n in 4" :key="n" class="h-16 animate-pulse rounded-lg bg-white" />
+            <div v-for="n in 4" :key="n" class="h-16 animate-pulse rounded-2xl bg-white" />
         </div>
 
         <template v-else>
             <div class="card overflow-x-auto">
                 <table class="w-full text-sm">
-                    <thead class="bg-slate-50 text-left text-xs uppercase tracking-wide text-slate-400">
+                    <thead class="bg-ink-50 text-left text-xs uppercase tracking-wide text-ink-400">
                         <tr>
                             <th class="px-4 py-3">Role</th>
                             <th class="px-4 py-3">Branch</th>
@@ -92,18 +92,18 @@ onMounted(async () => {
                             <th class="px-4 py-3" />
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-slate-100">
+                    <tbody class="divide-y divide-ink-100">
                         <tr v-for="career in careers" :key="career.id">
                             <td class="px-4 py-3">
-                                <p class="font-semibold text-ink-700">{{ career.title }}</p>
-                                <p class="text-xs text-slate-500">{{ career.employment_type ?? '—' }}</p>
+                                <p class="font-semibold text-ink-900">{{ career.title }}</p>
+                                <p class="text-xs text-ink-400">{{ career.employment_type ?? '—' }}</p>
                             </td>
-                            <td class="px-4 py-3 text-slate-600">{{ career.branch?.name ?? 'Any branch' }}</td>
-                            <td class="px-4 py-3 text-slate-600">{{ career.vacancies }}</td>
+                            <td class="px-4 py-3 text-ink-500">{{ career.branch?.name ?? 'Any branch' }}</td>
+                            <td class="px-4 py-3 text-ink-500">{{ career.vacancies }}</td>
                             <td class="px-4 py-3">
                                 <span
                                     class="rounded-full px-2 py-0.5 text-xs font-semibold"
-                                    :class="career.is_open ? 'bg-emerald-50 text-emerald-700' : 'bg-slate-100 text-slate-500'"
+                                    :class="career.is_open ? 'bg-emerald-50 text-emerald-700' : 'bg-ink-100 text-ink-400'"
                                 >{{ career.is_open ? 'Open' : 'Closed' }}</span>
                             </td>
                             <td class="px-4 py-3 text-right">
@@ -122,7 +122,7 @@ onMounted(async () => {
                             </td>
                         </tr>
                         <tr v-if="careers.length === 0">
-                            <td colspan="5" class="px-4 py-8 text-center text-slate-400">No vacancies posted.</td>
+                            <td colspan="5" class="px-4 py-8 text-center text-ink-400">No vacancies posted.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -133,7 +133,7 @@ onMounted(async () => {
 
         <div v-if="showForm" class="fixed inset-0 z-50 grid place-items-center bg-black/40 p-4">
             <form class="card max-h-full w-full max-w-xl overflow-auto p-6" @submit.prevent="crud.save()">
-                <h2 class="font-heading text-lg font-bold text-ink-700">
+                <h2 class="font-heading text-lg font-semibold text-ink-900">
                     {{ editing ? `Edit ${editing.title}` : 'New vacancy' }}
                 </h2>
 

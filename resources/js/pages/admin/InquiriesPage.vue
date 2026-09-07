@@ -54,8 +54,8 @@ onMounted(load);
 <template>
     <div>
         <header class="mb-6">
-            <h1 class="font-heading text-2xl font-bold text-ink-700">Enquiries</h1>
-            <p class="text-sm text-slate-500">
+            <h1 class="font-heading text-2xl font-semibold text-ink-900">Enquiries</h1>
+            <p class="text-sm text-ink-400">
                 {{ auth.branchName ? `${auth.branchName} and general enquiries` : 'All branches' }}
             </p>
         </header>
@@ -81,17 +81,17 @@ onMounted(load);
         </div>
 
         <div v-if="loading" class="space-y-3">
-            <div v-for="n in 4" :key="n" class="h-24 animate-pulse rounded-lg bg-white" />
+            <div v-for="n in 4" :key="n" class="h-24 animate-pulse rounded-2xl bg-white" />
         </div>
 
-        <p v-else-if="inquiries.length === 0" class="card p-12 text-center text-slate-500">No enquiries.</p>
+        <p v-else-if="inquiries.length === 0" class="card p-12 text-center text-ink-400">No enquiries.</p>
 
         <div v-else class="space-y-3">
             <article v-for="inquiry in inquiries" :key="inquiry.id" class="card p-5">
                 <div class="flex flex-wrap items-start justify-between gap-3">
                     <div>
-                        <p class="font-heading font-semibold text-ink-700">{{ inquiry.name }}</p>
-                        <p class="text-xs text-slate-500">
+                        <p class="font-heading font-semibold text-ink-900">{{ inquiry.name }}</p>
+                        <p class="text-xs text-ink-400">
                             {{ inquiry.email }} &middot; +63 {{ inquiry.phone }} &middot;
                             {{ inquiry.branch?.name ?? 'General enquiry' }} &middot;
                             {{ formatDateTime(inquiry.created_at) }}
@@ -108,7 +108,7 @@ onMounted(load);
                     </button>
                 </div>
 
-                <p class="mt-3 whitespace-pre-line text-sm text-slate-600">{{ inquiry.message }}</p>
+                <p class="mt-3 whitespace-pre-line text-sm text-ink-500">{{ inquiry.message }}</p>
             </article>
         </div>
 

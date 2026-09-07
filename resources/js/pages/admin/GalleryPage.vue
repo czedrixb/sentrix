@@ -84,8 +84,8 @@ onMounted(load);
 <template>
     <div>
         <header class="mb-6">
-            <h1 class="font-heading text-2xl font-bold text-ink-700">Gallery</h1>
-            <p class="text-sm text-slate-500">Photos shown on the storefront gallery page.</p>
+            <h1 class="font-heading text-2xl font-semibold text-ink-900">Gallery</h1>
+            <p class="text-sm text-ink-400">Photos shown on the storefront gallery page.</p>
         </header>
 
         <p v-if="notice" class="mb-4 rounded bg-emerald-50 p-3 text-sm text-emerald-700">{{ notice }}</p>
@@ -117,14 +117,14 @@ onMounted(load);
         </form>
 
         <div v-if="loading" class="grid gap-3 sm:grid-cols-3 lg:grid-cols-4">
-            <div v-for="n in 8" :key="n" class="aspect-4/3 animate-pulse rounded-lg bg-white" />
+            <div v-for="n in 8" :key="n" class="aspect-4/3 animate-pulse rounded-2xl bg-white" />
         </div>
 
         <div v-else class="grid gap-3 sm:grid-cols-3 lg:grid-cols-4">
             <figure v-for="image in images" :key="image.id" class="card group relative overflow-hidden">
                 <img :src="image.url" :alt="image.caption ?? 'Gallery image'" class="aspect-4/3 w-full object-cover">
 
-                <figcaption class="flex items-center gap-2 p-2 text-xs text-slate-500">
+                <figcaption class="flex items-center gap-2 p-2 text-xs text-ink-400">
                     <span class="min-w-0 flex-1 truncate">{{ image.caption ?? '—' }}</span>
 
                     <button
@@ -138,7 +138,7 @@ onMounted(load);
                 </figcaption>
             </figure>
 
-            <p v-if="images.length === 0" class="col-span-full py-8 text-center text-slate-400">No images yet.</p>
+            <p v-if="images.length === 0" class="col-span-full py-8 text-center text-ink-400">No images yet.</p>
         </div>
     </div>
 </template>

@@ -26,14 +26,14 @@ onMounted(load);
 
 <template>
     <div class="mx-auto max-w-4xl px-4 py-10">
-        <h1 class="font-display text-4xl text-ink-700">Careers</h1>
-        <p class="mt-1 text-sm text-slate-500">Open roles across our branches.</p>
+        <h1 class="font-display text-4xl text-ink-900">Careers</h1>
+        <p class="mt-1 text-sm text-ink-400">Open roles across our branches.</p>
 
         <div v-if="loading" class="mt-8 space-y-4">
-            <div v-for="n in 3" :key="n" class="h-32 animate-pulse rounded-lg bg-slate-100" />
+            <div v-for="n in 3" :key="n" class="h-32 animate-pulse rounded-2xl bg-ink-100" />
         </div>
 
-        <p v-else-if="careers.length === 0" class="card mt-8 p-12 text-center text-slate-500">
+        <p v-else-if="careers.length === 0" class="card mt-8 p-12 text-center text-ink-400">
             No open roles right now. Do check back.
         </p>
 
@@ -41,8 +41,8 @@ onMounted(load);
             <article v-for="career in careers" :key="career.id" class="card p-5">
                 <div class="flex flex-wrap items-start justify-between gap-3">
                     <div>
-                        <h2 class="font-heading text-lg font-bold text-ink-700">{{ career.title }}</h2>
-                        <p class="mt-1 text-sm text-slate-500">
+                        <h2 class="font-heading text-lg font-semibold text-ink-900">{{ career.title }}</h2>
+                        <p class="mt-1 text-sm text-ink-400">
                             <span v-if="career.branch">{{ career.branch.name }} &middot; </span>
                             <span v-if="career.employment_type">{{ career.employment_type }} &middot; </span>
                             {{ career.vacancies }} opening{{ career.vacancies === 1 ? '' : 's' }}
@@ -54,7 +54,7 @@ onMounted(load);
                     </a>
                 </div>
 
-                <div v-if="career.description" class="prose-cms mt-4 text-sm text-slate-600" v-html="career.description" />
+                <div v-if="career.description" class="prose-cms mt-4 text-sm text-ink-500" v-html="career.description" />
             </article>
         </div>
 

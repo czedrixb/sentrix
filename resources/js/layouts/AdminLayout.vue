@@ -71,16 +71,23 @@ async function signOut() {
 </script>
 
 <template>
-    <div class="flex min-h-screen bg-slate-50">
+    <div class="flex min-h-screen bg-ink-50">
         <aside
-            class="flex flex-col border-r border-slate-200 bg-white transition-all"
+            class="flex flex-col border-r border-ink-200 bg-white transition-[width] duration-300 ease-soft"
             :class="collapsed ? 'w-16' : 'w-60'"
         >
-            <div class="flex h-16 items-center gap-2 border-b border-slate-200 px-4">
-                <span v-if="!collapsed" class="font-display text-2xl text-ink-700">Kompra</span>
+            <div class="flex h-16 items-center gap-2 border-b border-ink-200 px-4">
+                <svg class="size-6 shrink-0 text-brand-600" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path
+                        d="M12 2.5 4.5 5.6v5.9c0 4.7 3.1 8.4 7.5 10 4.4-1.6 7.5-5.3 7.5-10V5.6L12 2.5Z"
+                        stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"
+                    />
+                    <circle cx="12" cy="11" r="2.6" stroke="currentColor" stroke-width="1.6" />
+                </svg>
+                <span v-if="!collapsed" class="font-display text-xl font-semibold tracking-tight text-ink-900">Sentrix</span>
                 <button
                     type="button"
-                    class="ml-auto rounded p-2 text-slate-500 hover:bg-slate-100"
+                    class="ml-auto rounded-lg p-2 text-ink-400 transition-colors duration-300 ease-soft hover:bg-ink-100"
                     aria-label="Toggle navigation"
                     @click="collapsed = !collapsed"
                 >
@@ -94,7 +101,7 @@ async function signOut() {
                 <div v-for="section in sections" :key="section.label ?? 'root'" class="space-y-1">
                     <p
                         v-if="section.label && !collapsed"
-                        class="px-3 pt-2 text-[0.65rem] font-semibold uppercase tracking-wider text-slate-400"
+                        class="px-3 pt-2 text-[0.65rem] font-semibold uppercase tracking-wider text-ink-400"
                     >
                         {{ section.label }}
                     </p>
@@ -103,8 +110,8 @@ async function signOut() {
                         v-for="link in section.links"
                         :key="link.name"
                         :to="{ name: link.name }"
-                        class="block rounded px-3 py-2 font-heading text-sm font-semibold text-slate-600 hover:bg-slate-100"
-                        active-class="bg-brand-50 text-brand-600"
+                        class="block rounded-xl px-3 py-2 font-heading text-sm font-medium text-ink-500 transition-colors duration-300 ease-soft hover:bg-ink-100 hover:text-ink-900"
+                        active-class="bg-brand-50 text-brand-700"
                         :title="link.label"
                     >
                         {{ collapsed ? link.label.charAt(0) : link.label }}
@@ -112,18 +119,18 @@ async function signOut() {
                 </div>
             </nav>
 
-            <div class="border-t border-slate-200 p-2">
-                <RouterLink :to="{ name: 'home' }" class="block rounded px-3 py-2 text-sm text-slate-500 hover:bg-slate-100">
+            <div class="border-t border-ink-200 p-2">
+                <RouterLink :to="{ name: 'home' }" class="block rounded-xl px-3 py-2 text-sm text-ink-400 transition-colors duration-300 ease-soft hover:bg-ink-100">
                     {{ collapsed ? '↩' : 'View storefront' }}
                 </RouterLink>
             </div>
         </aside>
 
         <div class="flex flex-1 flex-col">
-            <header class="flex h-16 items-center gap-4 border-b border-slate-200 bg-white px-6">
+            <header class="flex h-16 items-center gap-4 border-b border-ink-200 bg-white px-6">
                 <div>
-                    <p class="font-heading text-sm font-semibold text-ink-700">{{ auth.user?.name }}</p>
-                    <p class="text-xs text-slate-500">
+                    <p class="font-heading text-sm font-semibold text-ink-900">{{ auth.user?.name }}</p>
+                    <p class="text-xs text-ink-400">
                         {{ auth.user?.roles?.join(', ') }}
                         <span v-if="auth.branchName"> &middot; {{ auth.branchName }}</span>
                     </p>
@@ -133,7 +140,11 @@ async function signOut() {
             </header>
 
             <main class="flex-1 overflow-auto p-6">
-                <RouterView />
+                <RouterView v-slot="{ Component }">
+                    <Transition name="page" mode="out-in">
+                        <component :is="Component" />
+                    </Transition>
+                </RouterView>
             </main>
         </div>
     </div>

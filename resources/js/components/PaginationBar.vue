@@ -40,18 +40,18 @@ function go(page) {
         </button>
 
         <button v-if="pages[0] > 1" type="button" class="btn-ghost px-3 py-1.5" @click="go(1)">1</button>
-        <span v-if="pages[0] > 2" class="px-1 text-slate-400">&hellip;</span>
+        <span v-if="pages[0] > 2" class="px-1 text-ink-400">&hellip;</span>
 
         <button
             v-for="page in pages"
             :key="page"
             type="button"
             class="min-w-9 rounded px-3 py-1.5 font-heading text-sm font-semibold"
-            :class="page === current ? 'bg-brand-500 text-white' : 'text-ink-700 hover:bg-slate-100'"
+            :class="page === current ? 'bg-brand-600 text-white' : 'text-ink-700 hover:bg-ink-100'"
             @click="go(page)"
         >{{ page }}</button>
 
-        <span v-if="pages.at(-1) < last - 1" class="px-1 text-slate-400">&hellip;</span>
+        <span v-if="pages.at(-1) < last - 1" class="px-1 text-ink-400">&hellip;</span>
         <button v-if="pages.at(-1) < last" type="button" class="btn-ghost px-3 py-1.5" @click="go(last)">{{ last }}</button>
 
         <button type="button" class="btn-ghost px-3 py-1.5" :disabled="current === last" @click="go(current + 1)">

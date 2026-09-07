@@ -10,36 +10,41 @@ class CategorySeeder extends Seeder
 {
     /**
      * Seed categories. These are starting values only: the catalogue is not
-     * printer-specific and categories are managed entirely from the admin.
+     * camera-specific and categories are managed entirely from the admin.
      *
      * @var array<string, array{description: string, children: array<string, string>}>
      */
     private const TREE = [
-        'Equipment' => [
-            'description' => 'Printers, scanners and copiers for the home office, the school and the production floor.',
+        'Cameras' => [
+            'description' => 'Fixed, dome and motorised cameras for the shop front, the warehouse and the perimeter.',
             'children' => [
-                'Printers' => 'Ink tank, laser and multifunction printers from Epson, Canon, Brother, HP, Pantum and Kyocera.',
-                'Scanners' => 'Sheet-fed and flatbed document scanners for records, permits and back-file conversion.',
-                'Copiers' => 'Office copiers, production multifunction machines and stencil duplicators for high-volume printing.',
+                'IP Cameras' => 'Network cameras from 4MP to 8MP, powered and recorded over a single Ethernet run.',
+                'Analogue Cameras' => 'HD-TVI and HD-CVI cameras on coaxial cable, for extending a system you already own.',
+                'PTZ and Speed Domes' => 'Motorised pan, tilt and zoom cameras for covering a yard or a car park from one pole.',
             ],
         ],
-        'Consumables' => [
-            'description' => 'The ink, toner, paper and media that keep a machine running between service calls.',
+        'Recorders and Storage' => [
+            'description' => 'The recorders that hold the footage and the drives written to continuously for years.',
             'children' => [
-                'Ink and Toner' => 'Genuine ink bottles, cartridges and toner units matched to the machines we carry.',
-                'Paper and Media' => 'Bond paper, photo and sticker media, carbonless forms and duplicator masters.',
+                'Network Video Recorders' => '4 to 32 channel NVRs with built-in PoE switching for IP camera systems.',
+                'Digital Video Recorders' => 'Coax DVRs for analogue systems, most of them able to take IP cameras alongside.',
+                'Surveillance Drives' => 'Drives rated for continuous write. A desktop drive in a recorder is a failure waiting to happen.',
             ],
         ],
-        'Spare Parts' => [
-            'description' => 'Fusers, rollers, printheads and drum units for in-warranty and out-of-warranty repair.',
+        'Alarms and Detection' => [
+            'description' => 'Intruder panels, motion detectors, door contacts, sirens and smoke detection.',
             'children' => [],
         ],
-        'Accessories' => [
-            'description' => 'Cables, stands, power protection and cleaning kits to finish an installation properly.',
+        'Access Control' => [
+            'description' => 'Fingerprint and card terminals, electric locks, exit buttons and video door intercoms.',
+            'children' => [],
+        ],
+        'Cabling and Power' => [
+            'description' => 'Cable, connectors, PoE injectors, power supplies and the surge protection that saves a recorder.',
             'children' => [],
         ],
         'Bundles' => [
-            'description' => 'Machine, consumables and paper packaged together at a lower price than buying separately.',
+            'description' => 'Cameras, recorder, drive and cable packaged together at a lower price than buying separately.',
             'children' => [],
         ],
     ];

@@ -30,8 +30,8 @@ async function submit() {
 
 <template>
     <div class="mx-auto max-w-md px-4 py-16">
-        <h1 class="font-display text-4xl text-ink-700">Create an account</h1>
-        <p class="mt-1 text-sm text-slate-500">Optional &mdash; it just keeps your order history in one place.</p>
+        <h1 class="font-display text-4xl text-ink-900">Create an account</h1>
+        <p class="mt-1 text-sm text-ink-400">Optional &mdash; it just keeps your order history in one place.</p>
 
         <form class="card mt-8 space-y-4 p-6" @submit.prevent="submit">
             <div>
@@ -49,7 +49,7 @@ async function submit() {
             <div>
                 <label class="field-label" for="phone">Mobile number (optional)</label>
                 <div class="flex">
-                    <span class="rounded-l border border-r-0 border-slate-300 bg-slate-50 px-3 py-2 text-sm text-slate-500">+63</span>
+                    <span class="rounded-l border border-r-0 border-ink-200 bg-ink-50 px-3 py-2 text-sm text-ink-400">+63</span>
                     <input id="phone" v-model="form.phone" class="field-input rounded-l-none" placeholder="9171234567" inputmode="numeric">
                 </div>
                 <span v-if="errors.phone" class="field-error">{{ errors.phone[0] }}</span>
@@ -71,7 +71,7 @@ async function submit() {
             </button>
         </form>
 
-        <p class="mt-4 text-center text-sm text-slate-500">
+        <p class="mt-4 text-center text-sm text-ink-400">
             Already registered?
             <RouterLink :to="{ name: 'login' }" class="font-semibold text-ink-700 hover:underline">Sign in</RouterLink>
         </p>

@@ -21,7 +21,7 @@ class ResolveCart
 
     public function handle(Request $request, Closure $next): Response
     {
-        $cookieName = config('kompra.cart.cookie');
+        $cookieName = config('sentrix.cart.cookie');
 
         $cart = $this->carts->resolve(
             $request->cookie($cookieName) ?: $request->header('X-Cart-Token'),
@@ -35,7 +35,7 @@ class ResolveCart
         return $response->withCookie(cookie(
             name: $cookieName,
             value: $cart->token,
-            minutes: (int) config('kompra.cart.lifetime_days') * 24 * 60,
+            minutes: (int) config('sentrix.cart.lifetime_days') * 24 * 60,
             httpOnly: true,
             sameSite: 'lax',
         ));

@@ -103,8 +103,8 @@ onMounted(load);
 <template>
     <div>
         <header class="mb-6">
-            <h1 class="font-heading text-2xl font-bold text-ink-700">Orders</h1>
-            <p v-if="auth.branchName" class="text-sm text-slate-500">Scoped to {{ auth.branchName }}</p>
+            <h1 class="font-heading text-2xl font-semibold text-ink-900">Orders</h1>
+            <p v-if="auth.branchName" class="text-sm text-ink-400">Scoped to {{ auth.branchName }}</p>
         </header>
 
         <div class="card mb-4 flex flex-wrap items-end gap-3 p-4">
@@ -146,14 +146,14 @@ onMounted(load);
         </div>
 
         <div v-if="loading" class="space-y-3">
-            <div v-for="n in 5" :key="n" class="h-20 animate-pulse rounded-lg bg-white" />
+            <div v-for="n in 5" :key="n" class="h-20 animate-pulse rounded-2xl bg-white" />
         </div>
 
-        <p v-else-if="orders.length === 0" class="card p-12 text-center text-slate-500">No orders match those filters.</p>
+        <p v-else-if="orders.length === 0" class="card p-12 text-center text-ink-400">No orders match those filters.</p>
 
         <div v-else class="card overflow-x-auto">
             <table class="w-full min-w-4xl text-sm">
-                <thead class="bg-slate-50 text-left text-xs uppercase tracking-wide text-slate-400">
+                <thead class="bg-ink-50 text-left text-xs uppercase tracking-wide text-ink-400">
                     <tr>
                         <th class="px-4 py-3">Order</th>
                         <th class="px-4 py-3">Customer</th>
@@ -164,25 +164,25 @@ onMounted(load);
                         <th class="px-4 py-3" />
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-slate-100">
-                    <tr v-for="order in orders" :key="order.order_number" class="hover:bg-slate-50">
+                <tbody class="divide-y divide-ink-100">
+                    <tr v-for="order in orders" :key="order.order_number" class="hover:bg-ink-50">
                         <td class="px-4 py-3">
                             <button type="button" class="font-semibold text-ink-700 hover:underline" @click="selected = order">
                                 {{ order.order_number }}
                             </button>
-                            <span class="block text-xs text-slate-400">{{ formatDateTime(order.created_at) }}</span>
+                            <span class="block text-xs text-ink-400">{{ formatDateTime(order.created_at) }}</span>
                         </td>
                         <td class="px-4 py-3">
                             {{ order.customer.first_name }} {{ order.customer.last_name }}
-                            <span class="block text-xs text-slate-400">{{ order.customer.email }}</span>
+                            <span class="block text-xs text-ink-400">{{ order.customer.email }}</span>
                         </td>
-                        <td class="px-4 py-3 text-slate-600">{{ order.branch?.name }}</td>
-                        <td class="px-4 py-3 text-slate-600">{{ formatDateTime(order.scheduled_for) }}</td>
-                        <td class="px-4 py-3 text-right font-semibold text-ink-700">{{ formatMoney(order.totals.grand_total) }}</td>
+                        <td class="px-4 py-3 text-ink-500">{{ order.branch?.name }}</td>
+                        <td class="px-4 py-3 text-ink-500">{{ formatDateTime(order.scheduled_for) }}</td>
+                        <td class="px-4 py-3 text-right font-semibold text-ink-900">{{ formatMoney(order.totals.grand_total) }}</td>
                         <td class="px-4 py-3">
                             <select
                                 :value="order.status"
-                                class="rounded border border-slate-300 px-2 py-1 text-xs"
+                                class="rounded border border-ink-200 px-2 py-1 text-xs"
                                 :disabled="busy"
                                 @change="setStatus(order, $event.target.value)"
                             >
@@ -203,7 +203,7 @@ onMounted(load);
                                 :disabled="busy"
                                 @click="markPaid(order)"
                             >Mark paid</button>
-                            <button type="button" class="px-2 py-1 text-xs text-slate-500 hover:underline" @click="archive(order)">
+                            <button type="button" class="px-2 py-1 text-xs text-ink-400 hover:underline" @click="archive(order)">
                                 Archive
                             </button>
                         </td>
@@ -219,30 +219,30 @@ onMounted(load);
             <div class="card max-h-full w-full max-w-2xl overflow-auto p-6">
                 <div class="flex items-start justify-between">
                     <div>
-                        <h2 class="font-heading text-lg font-bold text-ink-700">{{ selected.order_number }}</h2>
-                        <p class="text-sm text-slate-500">{{ selected.branch?.name }} &middot; {{ selected.fulfillment_label }}</p>
+                        <h2 class="font-heading text-lg font-semibold text-ink-900">{{ selected.order_number }}</h2>
+                        <p class="text-sm text-ink-400">{{ selected.branch?.name }} &middot; {{ selected.fulfillment_label }}</p>
                     </div>
                     <button type="button" class="btn-ghost" @click="selected = null">Close</button>
                 </div>
 
                 <dl class="mt-4 grid gap-3 text-sm sm:grid-cols-2">
                     <div>
-                        <dt class="text-slate-500">Customer</dt>
+                        <dt class="text-ink-400">Customer</dt>
                         <dd>{{ selected.customer.first_name }} {{ selected.customer.last_name }}</dd>
                     </div>
-                    <div><dt class="text-slate-500">Email</dt><dd>{{ selected.customer.email }}</dd></div>
-                    <div><dt class="text-slate-500">Phone</dt><dd>+63 {{ selected.customer.phone }}</dd></div>
-                    <div><dt class="text-slate-500">Scheduled</dt><dd>{{ formatDateTime(selected.scheduled_for) }}</dd></div>
+                    <div><dt class="text-ink-400">Email</dt><dd>{{ selected.customer.email }}</dd></div>
+                    <div><dt class="text-ink-400">Phone</dt><dd>+63 {{ selected.customer.phone }}</dd></div>
+                    <div><dt class="text-ink-400">Scheduled</dt><dd>{{ formatDateTime(selected.scheduled_for) }}</dd></div>
                     <div v-if="selected.delivery_address" class="sm:col-span-2">
-                        <dt class="text-slate-500">Delivery address</dt><dd>{{ selected.delivery_address }}</dd>
+                        <dt class="text-ink-400">Delivery address</dt><dd>{{ selected.delivery_address }}</dd>
                     </div>
                     <div v-if="selected.notes" class="sm:col-span-2">
-                        <dt class="text-slate-500">Notes</dt><dd>{{ selected.notes }}</dd>
+                        <dt class="text-ink-400">Notes</dt><dd>{{ selected.notes }}</dd>
                     </div>
                 </dl>
 
                 <table class="mt-5 w-full text-sm">
-                    <thead class="text-left text-xs uppercase tracking-wide text-slate-400">
+                    <thead class="text-left text-xs uppercase tracking-wide text-ink-400">
                         <tr>
                             <th class="py-2">Item</th>
                             <th class="py-2 text-right">Unit</th>
@@ -250,9 +250,9 @@ onMounted(load);
                             <th class="py-2 text-right">Total</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-slate-100">
+                    <tbody class="divide-y divide-ink-100">
                         <tr v-for="item in selected.items" :key="item.id">
-                            <td class="py-2">{{ item.product_name }}<span class="block text-xs text-slate-400">{{ item.sku }}</span></td>
+                            <td class="py-2">{{ item.product_name }}<span class="block text-xs text-ink-400">{{ item.sku }}</span></td>
                             <td class="py-2 text-right">{{ formatMoney(item.unit_price) }}</td>
                             <td class="py-2 text-right">{{ item.quantity }}</td>
                             <td class="py-2 text-right">{{ formatMoney(item.line_total) }}</td>
@@ -260,12 +260,12 @@ onMounted(load);
                     </tbody>
                 </table>
 
-                <div class="mt-3 space-y-1 border-t border-slate-200 pt-3 text-sm">
-                    <div class="flex justify-between"><span class="text-slate-500">Subtotal</span><span>{{ formatMoney(selected.totals.subtotal) }}</span></div>
+                <div class="mt-3 space-y-1 border-t border-ink-200 pt-3 text-sm">
+                    <div class="flex justify-between"><span class="text-ink-400">Subtotal</span><span>{{ formatMoney(selected.totals.subtotal) }}</span></div>
                     <div v-if="Number(selected.totals.discount_total) > 0" class="flex justify-between text-emerald-600">
                         <span>Discount</span><span>&minus;{{ formatMoney(selected.totals.discount_total) }}</span>
                     </div>
-                    <div class="flex justify-between font-heading font-bold text-ink-700">
+                    <div class="flex justify-between font-heading font-semibold text-ink-900">
                         <span>Total</span><span>{{ formatMoney(selected.totals.grand_total) }}</span>
                     </div>
                 </div>

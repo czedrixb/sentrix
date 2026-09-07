@@ -36,8 +36,8 @@ async function submit() {
 
 <template>
     <div class="mx-auto max-w-md px-4 py-16">
-        <h1 class="font-display text-4xl text-ink-700">Sign in</h1>
-        <p class="mt-1 text-sm text-slate-500">One sign-in for customers and staff alike.</p>
+        <h1 class="font-display text-4xl text-ink-900">Sign in</h1>
+        <p class="mt-1 text-sm text-ink-400">One sign-in for customers and staff alike.</p>
 
         <form class="card mt-8 space-y-4 p-6" @submit.prevent="submit">
             <div>
@@ -52,7 +52,7 @@ async function submit() {
                 <span v-if="errors.password" class="field-error">{{ errors.password[0] }}</span>
             </div>
 
-            <label class="flex items-center gap-2 text-sm text-slate-600">
+            <label class="flex items-center gap-2 text-sm text-ink-500">
                 <input v-model="form.remember" type="checkbox" class="rounded">
                 Keep me signed in
             </label>
@@ -62,7 +62,7 @@ async function submit() {
             </button>
         </form>
 
-        <p class="mt-4 text-center text-sm text-slate-500">
+        <p class="mt-4 text-center text-sm text-ink-400">
             No account?
             <RouterLink :to="{ name: 'register' }" class="font-semibold text-ink-700 hover:underline">Create one</RouterLink>
             &mdash; or just

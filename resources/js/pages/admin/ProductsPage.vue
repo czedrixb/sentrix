@@ -101,8 +101,8 @@ onMounted(load);
 <template>
     <div>
         <header class="mb-6">
-            <h1 class="font-heading text-2xl font-bold text-ink-700">Products</h1>
-            <p class="text-sm text-slate-500">Stock is tracked per branch.</p>
+            <h1 class="font-heading text-2xl font-semibold text-ink-900">Products</h1>
+            <p class="text-sm text-ink-400">Stock is tracked per branch.</p>
         </header>
 
         <p v-if="notice" class="mb-4 rounded bg-emerald-50 p-3 text-sm text-emerald-700">{{ notice }}</p>
@@ -135,12 +135,12 @@ onMounted(load);
         </div>
 
         <div v-if="loading" class="space-y-3">
-            <div v-for="n in 5" :key="n" class="h-20 animate-pulse rounded-lg bg-white" />
+            <div v-for="n in 5" :key="n" class="h-20 animate-pulse rounded-2xl bg-white" />
         </div>
 
         <div v-else class="card overflow-x-auto">
             <table class="w-full text-sm">
-                <thead class="bg-slate-50 text-left text-xs uppercase tracking-wide text-slate-400">
+                <thead class="bg-ink-50 text-left text-xs uppercase tracking-wide text-ink-400">
                     <tr>
                         <th class="px-4 py-3">Product</th>
                         <th class="px-4 py-3">Category</th>
@@ -150,22 +150,22 @@ onMounted(load);
                         <th class="px-4 py-3" />
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-slate-100">
-                    <tr v-for="product in products" :key="product.id" class="hover:bg-slate-50">
+                <tbody class="divide-y divide-ink-100">
+                    <tr v-for="product in products" :key="product.id" class="hover:bg-ink-50">
                         <td class="px-4 py-3">
                             <div class="flex items-center gap-3">
-                                <div class="size-10 shrink-0 overflow-hidden rounded bg-slate-100">
+                                <div class="size-10 shrink-0 overflow-hidden rounded bg-ink-100">
                                     <img v-if="product.images?.[0]" :src="product.images[0].url" :alt="product.name" class="size-full object-cover">
                                 </div>
                                 <div>
-                                    <p class="font-semibold text-ink-700">{{ product.name }}</p>
-                                    <p class="text-xs text-slate-400">{{ product.sku }}</p>
+                                    <p class="font-semibold text-ink-900">{{ product.name }}</p>
+                                    <p class="text-xs text-ink-400">{{ product.sku }}</p>
                                 </div>
                             </div>
                         </td>
-                        <td class="px-4 py-3 text-slate-600">{{ product.category?.name ?? '—' }}</td>
+                        <td class="px-4 py-3 text-ink-500">{{ product.category?.name ?? '—' }}</td>
                         <td class="px-4 py-3 text-right">{{ formatMoney(product.price) }}</td>
-                        <td class="px-4 py-3 text-right font-semibold text-ink-700">
+                        <td class="px-4 py-3 text-right font-semibold text-ink-900">
                             {{ (product.stock ?? []).reduce((total, row) => total + row.quantity, 0) }}
                         </td>
                         <td class="px-4 py-3">
@@ -173,7 +173,7 @@ onMounted(load);
                                 class="rounded-full px-2 py-0.5 text-xs font-semibold capitalize"
                                 :class="{
                                     'bg-emerald-50 text-emerald-700': product.status === 'active',
-                                    'bg-slate-100 text-slate-500': product.status === 'draft',
+                                    'bg-ink-100 text-ink-400': product.status === 'draft',
                                     'bg-amber-50 text-amber-700': product.status === 'archived',
                                 }"
                             >{{ product.status }}</span>
@@ -185,7 +185,7 @@ onMounted(load);
                             <button
                                 v-if="auth.can('products.manage') && product.status !== 'archived'"
                                 type="button"
-                                class="px-2 py-1 text-xs text-slate-500 hover:underline"
+                                class="px-2 py-1 text-xs text-ink-400 hover:underline"
                                 @click="archive(product)"
                             >Archive</button>
                         </td>
@@ -199,16 +199,16 @@ onMounted(load);
         <!-- Per-branch stock editor, generated from the branch list -->
         <div v-if="stockFor" class="fixed inset-0 z-50 grid place-items-center bg-black/40 p-4" @click.self="stockFor = null">
             <form class="card max-h-full w-full max-w-lg overflow-auto p-6" @submit.prevent="saveStock">
-                <h2 class="font-heading text-lg font-bold text-ink-700">Stock &mdash; {{ stockFor.name }}</h2>
-                <p class="mt-1 text-sm text-slate-500">One row per branch, including any branch added recently.</p>
+                <h2 class="font-heading text-lg font-semibold text-ink-900">Stock &mdash; {{ stockFor.name }}</h2>
+                <p class="mt-1 text-sm text-ink-400">One row per branch, including any branch added recently.</p>
 
                 <div class="mt-4 space-y-2">
                     <div v-for="row in stockRows" :key="row.branch_id" class="grid grid-cols-[1fr_5rem_5rem] items-center gap-3">
-                        <span class="text-sm text-slate-700">{{ row.branch_name }}</span>
+                        <span class="text-sm text-ink-600">{{ row.branch_name }}</span>
                         <input v-model="row.quantity" type="number" min="0" class="field-input" aria-label="Quantity">
                         <input v-model="row.low_stock_threshold" type="number" min="0" class="field-input" aria-label="Low stock threshold">
                     </div>
-                    <p class="text-xs text-slate-400">Columns: on hand, low-stock threshold.</p>
+                    <p class="text-xs text-ink-400">Columns: on hand, low-stock threshold.</p>
                 </div>
 
                 <div class="mt-6 flex justify-end gap-3">

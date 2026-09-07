@@ -9,37 +9,47 @@
 /*
  | Design tokens.
  |
- | The previous site had no theme layer at all: #e48801 appeared as a literal
- | fifty-two times and #0810a3 seventeen, behind class names ".yellow" and
- | ".blue" that did not describe their own colours. The palette is the same, but
- | it now lives in one place.
+ | The palette is a muted steel blue on an off-white ground: one accent, used
+ | sparingly, against a lot of white space. There is exactly one dark surface in
+ | the design -- the hero and the footer -- and it is the top of the ink ramp
+ | rather than a second brand colour.
+ |
+ | Every colour lives here. Nothing in a template should carry a hex.
  */
 @theme {
-    --color-brand-50: #fff8ec;
-    --color-brand-100: #ffedcc;
-    --color-brand-200: #ffd894;
-    --color-brand-300: #ffbc5c;
-    --color-brand-400: #fb9e2f;
-    --color-brand-500: #e48801;
-    --color-brand-600: #c26f00;
-    --color-brand-700: #9a5502;
-    --color-brand-800: #7c4408;
-    --color-brand-900: #66390b;
+    /* Steel blue -- the only accent. */
+    --color-brand-50: #f2f6f9;
+    --color-brand-100: #e4ecf3;
+    --color-brand-200: #c6d8e6;
+    --color-brand-300: #9fbcd2;
+    --color-brand-400: #7799b6;
+    --color-brand-500: #5b7c9d;
+    --color-brand-600: #46617c;
+    --color-brand-700: #374d62;
+    --color-brand-800: #2a3b4c;
+    --color-brand-900: #1e2b38;
 
-    --color-ink-50: #eef0ff;
-    --color-ink-100: #e0e3ff;
-    --color-ink-200: #c7cbff;
-    --color-ink-300: #a5a8ff;
-    --color-ink-400: #8781fb;
-    --color-ink-500: #6f60f2;
-    --color-ink-600: #212fab;
-    --color-ink-700: #0810a3;
-    --color-ink-800: #0a0f7f;
-    --color-ink-900: #0d1268;
+    /* Neutral ink, from page tint through to the near-black hero surface. */
+    --color-ink-50: #f6f7f8;
+    --color-ink-100: #eceef0;
+    --color-ink-200: #d7dade;
+    --color-ink-300: #b3b9c0;
+    --color-ink-400: #858d97;
+    --color-ink-500: #616a75;
+    --color-ink-600: #454d57;
+    --color-ink-700: #2f363e;
+    --color-ink-800: #1a1e24;
+    --color-ink-900: #0e0f11;
 
-    --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
-    --font-heading: 'Noto Sans', ui-sans-serif, system-ui, sans-serif;
-    --font-display: 'Bebas Neue', 'Noto Sans', ui-sans-serif, sans-serif;
+    /* The page ground: off-white, not white. Cards are what is white. */
+    --color-canvas: #f4f5f6;
+
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-heading: 'Instrument Sans', 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Instrument Sans', 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+    /* One easing curve for the whole site, so nothing moves in a different accent. */
+    --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 @layer base {
@@ -48,20 +58,40 @@
     }
 
     body {
-        @apply bg-white font-sans text-slate-700 antialiased;
+        @apply bg-canvas font-sans text-ink-500 antialiased;
     }
 
     h1, h2, h3, h4, h5, h6 {
-        @apply font-heading text-ink-700;
+        @apply font-heading tracking-tight text-ink-800;
     }
 
     /* Content stored as HTML by the CMS. */
     .prose-cms :where(p) { @apply mb-4 leading-relaxed; }
     .prose-cms :where(ul) { @apply mb-4 list-disc pl-6; }
     .prose-cms :where(ol) { @apply mb-4 list-decimal pl-6; }
-    .prose-cms :where(a) { @apply text-ink-700 underline; }
-    .prose-cms :where(img) { @apply my-4 max-w-full rounded; }
-    .prose-cms :where(iframe) { @apply my-4 aspect-video w-full rounded; }
+    .prose-cms :where(a) { @apply text-brand-600 underline underline-offset-2; }
+    .prose-cms :where(img) { @apply my-4 max-w-full rounded-2xl; }
+    .prose-cms :where(iframe) { @apply my-4 aspect-video w-full rounded-2xl; }
+
+    /*
+     | Motion is opt-out, once, here.
+     |
+     | Everything below animates: buttons, cards, route changes and the scroll
+     | reveal directive. A visitor who has asked their system for less movement
+     | gets the end state immediately rather than a shorter animation.
+     */
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+
+        *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+    }
 }
 
 @layer components {
@@ -70,30 +100,38 @@
     .btn-primary,
     .btn-secondary,
     .btn-ghost {
-        @apply inline-flex items-center justify-center gap-2 rounded px-5 py-2.5 font-heading text-sm
-               font-semibold transition-colors focus:outline-none focus-visible:ring-2
-               focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+        @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-heading text-sm
+               font-medium transition-[background-color,border-color,color,box-shadow,transform]
+               duration-300 ease-soft focus:outline-none focus-visible:ring-2
+               focus-visible:ring-brand-400 focus-visible:ring-offset-2
+               disabled:cursor-not-allowed disabled:opacity-50;
     }
 
     .btn-primary {
-        @apply bg-brand-500 text-white hover:bg-ink-700 focus-visible:ring-brand-500;
+        @apply bg-ink-900 text-white hover:bg-brand-600;
     }
 
     .btn-secondary {
-        @apply border border-ink-700 bg-white text-ink-700 hover:bg-ink-700 hover:text-white;
+        @apply border border-ink-200 bg-white text-ink-800 hover:border-brand-400 hover:text-brand-600;
     }
 
     .btn-ghost {
-        @apply text-ink-700 hover:bg-slate-100;
+        @apply text-ink-600 hover:bg-ink-100 hover:text-ink-900;
+    }
+
+    /* The arrow in "Shop now ->" nudges on hover. */
+    .btn-arrow {
+        @apply transition-transform duration-300 ease-soft group-hover:translate-x-1;
     }
 
     .field-label {
-        @apply mb-1 block font-heading text-sm font-semibold text-ink-700;
+        @apply mb-1.5 block font-heading text-sm font-medium text-ink-700;
     }
 
     .field-input {
-        @apply w-full rounded border border-slate-300 px-3 py-2 text-sm
-               focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500;
+        @apply w-full rounded-xl border border-ink-200 bg-white px-4 py-2.5 text-sm text-ink-800
+               transition-colors duration-200 ease-soft placeholder:text-ink-400
+               focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400;
     }
 
     .field-error {
@@ -101,6 +139,66 @@
     }
 
     .card {
-        @apply rounded-lg border border-slate-200 bg-white;
+        @apply rounded-3xl border border-ink-200/70 bg-white
+               transition-[border-color,box-shadow,transform] duration-300 ease-soft;
     }
+
+    /* The small tracked label that opens every section in the reference. */
+    .eyebrow {
+        @apply text-[11px] font-medium uppercase tracking-[0.18em] text-ink-400;
+    }
+
+    /*
+     | The arch tile from the reference's solutions row: a full semicircle on top
+     | of a softly rounded body. The radius is half the tile width, so it stays a
+     | true arch at every breakpoint rather than a rounded rectangle.
+     */
+    .arch {
+        @apply overflow-hidden rounded-b-3xl rounded-t-[9999px]
+               transition-transform duration-500 ease-soft;
+    }
+
+    /* Section shell: the reference's rhythm is vertical space, not dividers. */
+    .section {
+        @apply mx-auto max-w-7xl px-4 py-16 sm:py-20;
+    }
+}
+
+/*
+ | Route transitions.
+ |
+ | Named "page" and driven by the <Transition> in each layout. Kept here rather
+ | than in a scoped block so both layouts share one definition.
+ */
+.page-enter-active {
+    transition: opacity 0.28s var(--ease-soft), transform 0.28s var(--ease-soft);
+}
+
+.page-leave-active {
+    transition: opacity 0.18s var(--ease-soft), transform 0.18s var(--ease-soft);
+}
+
+.page-enter-from {
+    opacity: 0;
+    transform: translateY(8px);
+}
+
+.page-leave-to {
+    opacity: 0;
+    transform: translateY(-4px);
+}
+
+/*
+ | Scroll reveal, driven by the v-reveal directive in resources/js/support/reveal.js.
+ | The directive only toggles the class; the movement is described here.
+ */
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.6s var(--ease-soft), transform 0.6s var(--ease-soft);
+}
+
+[data-reveal='shown'] {
+    opacity: 1;
+    transform: none;
 }
