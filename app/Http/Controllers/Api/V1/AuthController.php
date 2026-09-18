@@ -49,7 +49,7 @@ class AuthController extends Controller
 
         $this->adoptGuestCart($request, $user);
 
-        return response()->json(['user' => new UserResource($user->load('branch'))], 201);
+        return response()->json(['user' => new UserResource($user->load(['branch', 'roles', 'permissions', 'roles.permissions']))], 201);
     }
 
     /**
@@ -99,7 +99,7 @@ class AuthController extends Controller
 
         $this->adoptGuestCart($request, $user);
 
-        return response()->json(['user' => new UserResource($user->load('branch'))]);
+        return response()->json(['user' => new UserResource($user->load(['branch', 'roles', 'permissions', 'roles.permissions']))]);
     }
 
     public function logout(Request $request): JsonResponse
@@ -121,7 +121,7 @@ class AuthController extends Controller
     public function me(Request $request): JsonResponse
     {
         return response()->json([
-            'user' => new UserResource($request->user()->load('branch')),
+            'user' => new UserResource($request->user()->load(['branch', 'roles', 'permissions', 'roles.permissions'])),
         ]);
     }
 

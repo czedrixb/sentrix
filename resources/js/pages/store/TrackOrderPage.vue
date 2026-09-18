@@ -31,7 +31,7 @@ function submit() {
         <form class="card mt-8 space-y-4 p-6" @submit.prevent="submit">
             <div>
                 <label class="field-label" for="number">Order number</label>
-                <input id="number" v-model="form.order_number" class="field-input" placeholder="KMP-260905-0001">
+                <input id="number" v-model="form.order_number" class="field-input" placeholder="SNX-260905-0001">
             </div>
 
             <div>

@@ -23,7 +23,7 @@ class UserController extends Controller
     public function index(Request $request): AnonymousResourceCollection
     {
         $users = User::query()
-            ->with(['branch', 'roles'])
+            ->with(['branch', 'roles', 'permissions', 'roles.permissions'])
             ->when($request->filled('role'), fn ($query) => $query->role($request->string('role')->toString()))
             ->when($request->filled('branch_id'), fn ($query) => $query->where('branch_id', $request->integer('branch_id')))
             ->when($request->filled('q'), function ($query) use ($request): void {
@@ -60,7 +60,7 @@ class UserController extends Controller
         $user = User::query()->create(collect($validated)->except('role')->all());
         $user->syncRoles([$validated['role']]);
 
-        return (new UserResource($user->load(['branch', 'roles'])))->response()->setStatusCode(201);
+        return (new UserResource($user->load(['branch', 'roles', 'permissions', 'roles.permissions'])))->response()->setStatusCode(201);
     }
 
     public function update(Request $request, User $user): UserResource
@@ -85,7 +85,7 @@ class UserController extends Controller
             $user->syncRoles([$validated['role']]);
         }
 
-        return new UserResource($user->fresh(['branch', 'roles']));
+        return new UserResource($user->fresh(['branch', 'roles', 'permissions', 'roles.permissions']));
     }
 
     /**
