@@ -134,6 +134,27 @@ class AdminAuthorizationTest extends TestCase
         $this->getJson('/api/v1/admin/dashboard')->assertUnauthorized();
     }
 
+    /**
+     * The admin branch list carries no data a customer cannot already see
+     * through the public endpoint, but it also includes inactive branches and
+     * has no reason to be reachable by a non-staff account.
+     */
+    public function test_a_customer_cannot_list_admin_branches(): void
+    {
+        $this->actingAs($this->staff('customer'))
+            ->getJson('/api/v1/admin/branches')
+            ->assertForbidden();
+    }
+
+    public function test_any_staff_role_can_list_admin_branches(): void
+    {
+        // Every non-customer role holds dashboard.view -- HR has almost
+        // nothing else, so it is the strictest real check available.
+        $this->actingAs($this->staff('hr'))
+            ->getJson('/api/v1/admin/branches')
+            ->assertOk();
+    }
+
     public function test_branch_staff_see_their_own_and_general_inquiries_only(): void
     {
         $manager = $this->staff('branch_manager', $this->davao);

@@ -100,7 +100,12 @@ Route::middleware(['auth:sanctum'])->prefix('v1/admin')->name('api.v1.admin.')->
     /*
     | Branches. Creating one here is the entire cost of opening a location.
     */
-    Route::get('branches', [BranchController::class, 'index'])->name('branches.index');
+    // Every staff role holds dashboard.view (customers hold no permissions at
+    // all), so this keeps the branch list open to any real staff member --
+    // matching the admin nav, which shows Branches to every role -- while
+    // closing it to a signed-in customer.
+    Route::get('branches', [BranchController::class, 'index'])
+        ->middleware('permission:dashboard.view')->name('branches.index');
 
     Route::middleware('permission:branches.manage')->group(function (): void {
         Route::post('branches', [BranchController::class, 'store'])->name('branches.store');

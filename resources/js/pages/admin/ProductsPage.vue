@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted, reactive, ref, watch } from 'vue';
-import { admin } from '@/api';
+import { admin, toFormData } from '@/api';
 import { useAuthStore } from '@/stores/auth';
 import { useReferenceStore } from '@/stores/reference';
 import PaginationBar from '@/components/PaginationBar.vue';
@@ -12,6 +12,10 @@ import { formatMoney } from '@/support/format';
  * The stock editor renders one row per branch straight from the branches list,
  * so a branch opened last week appears here automatically. The previous system
  * had seven fixed stock columns and a hand-written input for each.
+ *
+ * Create/edit is a second dialog rather than `useResourceCrud`: that composable
+ * assumes a flat, unpaginated list, but this page is already paginated and
+ * filtered, and the form body is multipart (images), not a plain JSON payload.
  */
 const auth = useAuthStore();
 const reference = useReferenceStore();
@@ -26,6 +30,95 @@ const notice = ref(null);
 const filters = reactive({ q: '', category_id: '', status: '', page: 1 });
 
 const stockRows = ref([]);
+
+const BLANK_PRODUCT = {
+    sku: '', name: '', slug: '', brand_id: '', category_id: '',
+    short_description: '', description: '', price: '',
+    length_cm: '', width_cm: '', height_cm: '', weight_kg: '',
+    is_featured: false, is_bundle: false, requires_delivery: true,
+    status: 'draft', images: null,
+};
+
+const editing = ref(null);
+const showForm = ref(false);
+const saving = ref(false);
+const errors = reactive({});
+const form = reactive({ ...BLANK_PRODUCT });
+
+function clearErrors() {
+    Object.keys(errors).forEach((key) => delete errors[key]);
+}
+
+function startCreate() {
+    editing.value = null;
+    Object.assign(form, BLANK_PRODUCT);
+    clearErrors();
+    showForm.value = true;
+}
+
+function startEdit(product) {
+    editing.value = product;
+    Object.assign(form, BLANK_PRODUCT, {
+        sku: product.sku,
+        name: product.name,
+        slug: product.slug,
+        brand_id: product.brand?.id ?? '',
+        category_id: product.category?.id ?? '',
+        short_description: product.short_description ?? '',
+        description: product.description ?? '',
+        price: product.price,
+        length_cm: product.dimensions?.length_cm ?? '',
+        width_cm: product.dimensions?.width_cm ?? '',
+        height_cm: product.dimensions?.height_cm ?? '',
+        weight_kg: product.dimensions?.weight_kg ?? '',
+        is_featured: product.is_featured,
+        is_bundle: product.is_bundle,
+        requires_delivery: product.requires_delivery,
+        status: product.status,
+        images: null,
+    });
+    clearErrors();
+    showForm.value = true;
+}
+
+function chooseImages(event) {
+    form.images = event.target.files?.length ? event.target.files : null;
+}
+
+async function submitProduct() {
+    saving.value = true;
+    notice.value = null;
+    clearErrors();
+
+    const payload = { ...form };
+
+    if (payload.images === null) {
+        delete payload.images;
+    }
+
+    try {
+        const body = toFormData(payload);
+
+        if (editing.value === null) {
+            await admin.createProduct(body);
+            notice.value = `${form.name} created.`;
+        } else {
+            await admin.updateProduct(editing.value.slug, body);
+            notice.value = `${form.name} updated.`;
+        }
+
+        showForm.value = false;
+        await load();
+    } catch (failure) {
+        Object.assign(errors, failure.errors ?? {});
+
+        if (Object.keys(failure.errors ?? {}).length === 0) {
+            notice.value = failure.message;
+        }
+    } finally {
+        saving.value = false;
+    }
+}
 
 async function load() {
     loading.value = true;
@@ -100,9 +193,15 @@ onMounted(load);
 
 <template>
     <div>
-        <header class="mb-6">
-            <h1 class="font-heading text-2xl font-semibold text-ink-900">Products</h1>
-            <p class="text-sm text-ink-400">Stock is tracked per branch.</p>
+        <header class="mb-6 flex flex-wrap items-center justify-between gap-3">
+            <div>
+                <h1 class="font-heading text-2xl font-semibold text-ink-900">Products</h1>
+                <p class="text-sm text-ink-400">Stock is tracked per branch.</p>
+            </div>
+
+            <button v-if="auth.can('products.manage')" type="button" class="btn-primary" @click="startCreate">
+                Add product
+            </button>
         </header>
 
         <p v-if="notice" class="mb-4 rounded bg-emerald-50 p-3 text-sm text-emerald-700">{{ notice }}</p>
@@ -179,6 +278,9 @@ onMounted(load);
                             >{{ product.status }}</span>
                         </td>
                         <td class="px-4 py-3 text-right">
+                            <button v-if="auth.can('products.manage')" type="button" class="btn-ghost px-2 py-1 text-xs" @click="startEdit(product)">
+                                Edit
+                            </button>
                             <button v-if="auth.can('stock.manage')" type="button" class="btn-ghost px-2 py-1 text-xs" @click="openStock(product)">
                                 Stock
                             </button>
@@ -215,6 +317,137 @@ onMounted(load);
                     <button type="button" class="btn-secondary" @click="stockFor = null">Cancel</button>
                     <button type="submit" class="btn-primary" :disabled="savingStock">
                         {{ savingStock ? 'Saving…' : 'Save stock' }}
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Create / edit. Stock and bundle composition stay in their own
+             dedicated tools above rather than duplicating them here. -->
+        <div v-if="showForm" class="fixed inset-0 z-50 grid place-items-center overflow-y-auto bg-black/40 p-4">
+            <form class="card my-8 max-h-full w-full max-w-2xl overflow-auto p-6" @submit.prevent="submitProduct">
+                <h2 class="font-heading text-lg font-semibold text-ink-900">
+                    {{ editing ? `Edit ${editing.name}` : 'New product' }}
+                </h2>
+
+                <div class="mt-4 grid gap-4 sm:grid-cols-2">
+                    <div>
+                        <label class="field-label" for="product-sku">SKU</label>
+                        <input id="product-sku" v-model="form.sku" class="field-input">
+                        <span v-if="errors.sku" class="field-error">{{ errors.sku[0] }}</span>
+                    </div>
+
+                    <div>
+                        <label class="field-label" for="product-name">Name</label>
+                        <input id="product-name" v-model="form.name" class="field-input">
+                        <span v-if="errors.name" class="field-error">{{ errors.name[0] }}</span>
+                    </div>
+
+                    <div>
+                        <label class="field-label" for="product-slug">Slug</label>
+                        <input id="product-slug" v-model="form.slug" class="field-input" placeholder="Derived from the name">
+                        <span v-if="errors.slug" class="field-error">{{ errors.slug[0] }}</span>
+                    </div>
+
+                    <div>
+                        <label class="field-label" for="product-price">Price</label>
+                        <input id="product-price" v-model="form.price" type="number" min="0" step="0.01" class="field-input">
+                        <span v-if="errors.price" class="field-error">{{ errors.price[0] }}</span>
+                    </div>
+
+                    <div>
+                        <label class="field-label" for="product-brand">Brand</label>
+                        <select id="product-brand" v-model="form.brand_id" class="field-input">
+                            <option value="">None</option>
+                            <option v-for="brand in reference.brands" :key="brand.id" :value="brand.id">{{ brand.name }}</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="field-label" for="product-category">Category</label>
+                        <select id="product-category" v-model="form.category_id" class="field-input">
+                            <option value="">None</option>
+                            <option v-for="category in reference.flatCategories" :key="category.id" :value="category.id">
+                                {{ category.name }}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="field-label" for="product-status">Status</label>
+                        <select id="product-status" v-model="form.status" class="field-input">
+                            <option value="draft">Draft</option>
+                            <option value="active">Active</option>
+                            <option value="archived">Archived</option>
+                        </select>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-4 sm:col-span-2">
+                        <label class="flex items-center gap-2 text-sm text-ink-600">
+                            <input v-model="form.is_featured" type="checkbox" class="rounded border-ink-300">
+                            Featured
+                        </label>
+                        <label class="flex items-center gap-2 text-sm text-ink-600">
+                            <input v-model="form.is_bundle" type="checkbox" class="rounded border-ink-300">
+                            Bundle
+                        </label>
+                        <label class="flex items-center gap-2 text-sm text-ink-600">
+                            <input v-model="form.requires_delivery" type="checkbox" class="rounded border-ink-300">
+                            Requires delivery
+                        </label>
+                    </div>
+
+                    <div class="sm:col-span-2">
+                        <label class="field-label" for="product-short">Short description</label>
+                        <textarea id="product-short" v-model="form.short_description" rows="2" class="field-input" />
+                        <span v-if="errors.short_description" class="field-error">{{ errors.short_description[0] }}</span>
+                    </div>
+
+                    <div class="sm:col-span-2">
+                        <label class="field-label" for="product-description">Description</label>
+                        <textarea id="product-description" v-model="form.description" rows="4" class="field-input" />
+                    </div>
+
+                    <div>
+                        <label class="field-label" for="product-length">Length (cm)</label>
+                        <input id="product-length" v-model="form.length_cm" type="number" min="0" step="0.01" class="field-input">
+                    </div>
+
+                    <div>
+                        <label class="field-label" for="product-width">Width (cm)</label>
+                        <input id="product-width" v-model="form.width_cm" type="number" min="0" step="0.01" class="field-input">
+                    </div>
+
+                    <div>
+                        <label class="field-label" for="product-height">Height (cm)</label>
+                        <input id="product-height" v-model="form.height_cm" type="number" min="0" step="0.01" class="field-input">
+                    </div>
+
+                    <div>
+                        <label class="field-label" for="product-weight">Weight (kg)</label>
+                        <input id="product-weight" v-model="form.weight_kg" type="number" min="0" step="0.01" class="field-input">
+                    </div>
+
+                    <div class="sm:col-span-2">
+                        <label class="field-label" for="product-images">
+                            Images {{ editing ? '(adds to the existing gallery)' : '' }}
+                        </label>
+                        <input
+                            id="product-images"
+                            type="file"
+                            multiple
+                            accept="image/jpeg,image/png,image/webp"
+                            class="field-input"
+                            @change="chooseImages"
+                        >
+                        <span v-if="errors['images.0']" class="field-error">{{ errors['images.0'][0] }}</span>
+                    </div>
+                </div>
+
+                <div class="mt-6 flex justify-end gap-3">
+                    <button type="button" class="btn-secondary" @click="showForm = false">Cancel</button>
+                    <button type="submit" class="btn-primary" :disabled="saving">
+                        {{ saving ? 'Saving…' : 'Save product' }}
                     </button>
                 </div>
             </form>

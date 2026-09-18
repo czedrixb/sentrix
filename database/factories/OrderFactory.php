@@ -24,7 +24,7 @@ class OrderFactory extends Factory
         $subtotal = fake()->randomFloat(2, 500, 50000);
 
         return [
-            'order_number' => 'KMP-'.fake()->unique()->numerify('########'),
+            'order_number' => 'SNX-'.fake()->unique()->numerify('########'),
             'user_id' => null,
             'branch_id' => Branch::factory(),
             'voucher_id' => null,
